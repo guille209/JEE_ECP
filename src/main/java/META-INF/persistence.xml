@@ -7,6 +7,7 @@
 		<class>pruebas.User1</class>
 		<class>pruebas.Phone2</class>
 		<class>models.entities.Tema</class>
+		<class>models.entities.Voto</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="none" /> <!--drop-and-create-tables none -->
 			<property name="eclipselink.logging.level" value="INFO" /> <!-- OFF,WARNING,INFO,FINE,ALL -->

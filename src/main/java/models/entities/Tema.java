@@ -74,7 +74,7 @@ public class Tema {
 	@Override
 	public String toString() {
 		return "Tema[id=" + id + ",pregunta=" + pregunta + ",nombre=" + nombre
-				+ ",votos=" + votos + "]";
+				+ ",votos=" + votos.toString() + "]";
 	}
 
 	@Override
