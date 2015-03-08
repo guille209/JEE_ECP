@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="JEE_ECP" transaction-type="RESOURCE_LOCAL">
 	 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>pruebas.User1</class>
-		<class>pruebas.Phone2</class>
 		<class>models.entities.Tema</class>
 		<class>models.entities.Voto</class>
 		<properties>

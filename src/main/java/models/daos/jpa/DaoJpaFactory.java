@@ -8,7 +8,7 @@ import models.daos.DaoFactory;
 import models.daos.*;
 
 public class DaoJpaFactory extends DaoFactory {
-    private static final String PERSISTENCE_UNIT = "tictactoe";
+    private static final String PERSISTENCE_UNIT = "JEE_ECP";
 
     private static EntityManagerFactory entityManagerFactory = Persistence
             .createEntityManagerFactory(PERSISTENCE_UNIT);
