@@ -8,6 +8,7 @@ import javax.persistence.criteria.*;
 import org.apache.logging.log4j.LogManager;
 
 import models.daos.GenericDao;
+import models.entities.Voto;
 
 public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
     private Class<T> persistentClass;
@@ -123,6 +124,5 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
         entityManager.close();
         return result.get(0);
     }
-
 
 }
