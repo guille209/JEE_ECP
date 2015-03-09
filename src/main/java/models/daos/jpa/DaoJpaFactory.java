@@ -30,4 +30,17 @@ public class DaoJpaFactory extends DaoFactory {
     public VotoDao getVotoDao() {
         return new VotoDaoJpa();
     }
+    
+    public static void dropAndCreateTables() {
+//        try {
+//            Statement statement = getConnection().createStatement();
+//            statement.executeUpdate(String.format(DROP_TABLE, User.TABLE));
+//            statement.executeUpdate(String.format(DROP_TABLE, Category.TABLE));
+//            statement.executeUpdate(CategoryDaoJdbc.sqlToCreateTable());
+//            statement.executeUpdate(UserDaoJdbc.sqlToCreateTable());
+//        } catch (SQLException e) {
+//            LogManager.getLogger(DaoJdbcFactory.class).error("Drop tables: " + e.getMessage());
+//        }
+    	
+    }
 }

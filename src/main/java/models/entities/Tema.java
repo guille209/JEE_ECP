@@ -5,7 +5,10 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = Tema.TABLE)
 public class Tema {
+	
+	public static final String TABLE = "TEMA";
 
 	public static final String ID = "ID";
 

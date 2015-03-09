@@ -1,5 +1,6 @@
 package models.daos.jpa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -21,10 +22,15 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
     public void create(T entity) {
         EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory().createEntityManager();
         try {
+        	System.out.println(entityManager);
             entityManager.getTransaction().begin();
+            System.out.println(entityManager+"2");
             entityManager.persist(entity);
+            System.out.println( entityManager.getTransaction()+"3");
             entityManager.getTransaction().commit();
+            System.out.println(entityManager+"4");
             LogManager.getLogger(GenericDaoJpa.class).debug("create: " + entity);
+            System.out.println(entityManager+"5");
         } catch (Exception e) {
             LogManager.getLogger(GenericDaoJpa.class).error("create: " + e);
             if (entityManager.getTransaction().isActive())
@@ -120,8 +126,10 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
         TypedQuery<T> typedQuery = entityManager.createQuery(query);
         typedQuery.setFirstResult(0); // El primero es 0
         typedQuery.setMaxResults(0); // Se realiza la query, se buscan todos
-        List<T> result = typedQuery.getResultList();
+        List<T> result = new ArrayList<T>();
+        result = typedQuery.getResultList();
         entityManager.close();
+        System.out.println("Resultado-->  "+typedQuery);
         return result.get(0);
     }
 

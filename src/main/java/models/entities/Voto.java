@@ -5,7 +5,10 @@ import javax.persistence.*;
 import models.utils.NivelEstudios;
 
 @Entity
+@Table(name = Voto.TABLE)
 public class Voto {
+	
+	public static final String TABLE = "VOTO";
 
 	public static final String ID = "ID";
 
