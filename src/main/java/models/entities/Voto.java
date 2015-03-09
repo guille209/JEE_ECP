@@ -29,14 +29,19 @@ public class Voto {
 	@Column(name = NIVELESTUDIOS)
 	private NivelEstudios nivelEstudios;
 
+	@ManyToOne
+	@JoinColumn
+	private Tema tema;
+
 	public Voto() {
 
 	}
 
-	public Voto(Integer valoracion, String ip, NivelEstudios nivelEstudios) {
+	public Voto(Integer valoracion, String ip, NivelEstudios nivelEstudios,Tema tema) {
 		this.valoracion = valoracion;
 		this.ip = ip;
 		this.nivelEstudios = nivelEstudios;
+		this.tema = tema;
 
 	}
 
@@ -84,8 +89,9 @@ public class Voto {
 		return "Voto[Valoracion" + (int) valoracion + ",ip=" + ip
 				+ ",nivel de estudios=" + nivelEstudios.name();
 	}
-	public Voto clone(){
-		return new Voto(valoracion,ip,nivelEstudios);
+
+	public Voto clone() {
+		return new Voto(valoracion, ip, nivelEstudios,tema);
 	}
 
 }

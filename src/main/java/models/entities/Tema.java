@@ -26,17 +26,15 @@ public class Tema {
 
 	public static final String VOTO_ID = "VOTO_ID";
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
 	private List<Voto> votos;
 
 	public Tema() {
-
 	}
 
-	public Tema(String nombre, String pregunta, List<Voto> votos) {
+	public Tema(String nombre, String pregunta) {
 		this.nombre = nombre;
 		this.pregunta = pregunta;
-		this.votos = votos;
 	}
 
 	public String getPregunta() {
@@ -79,7 +77,7 @@ public class Tema {
 
 	@Override
 	public Tema clone() {
-		return new Tema(nombre, pregunta, votos);
+		return new Tema(nombre, pregunta);
 	}
 
 }
