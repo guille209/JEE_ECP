@@ -38,6 +38,16 @@ public class Tema {
 		this.pregunta = pregunta;
 		this.votos = votos;
 	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getPregunta() {
 		return pregunta;

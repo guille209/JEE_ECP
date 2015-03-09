@@ -8,6 +8,7 @@ import javax.persistence.criteria.*;
 import org.apache.logging.log4j.LogManager;
 
 import models.daos.GenericDao;
+import models.entities.Voto;
 
 public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
     private Class<T> persistentClass;
@@ -102,6 +103,26 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
         List<T> result = typedQuery.getResultList();
         entityManager.close();
         return result;
+    }
+    
+    public T findById(ID id){
+    	EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory().createEntityManager();
+        CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = criteria.createQuery(this.persistentClass);
+
+        Root<T> root = query.from(this.persistentClass);
+
+        query.select(root); 
+
+        Predicate p1 = criteria.equal(root.get("id"),id);
+        query.where(p1);
+        // Se realiza la query
+        TypedQuery<T> typedQuery = entityManager.createQuery(query);
+        typedQuery.setFirstResult(0); // El primero es 0
+        typedQuery.setMaxResults(0); // Se realiza la query, se buscan todos
+        List<T> result = typedQuery.getResultList();
+        entityManager.close();
+        return result.get(0);
     }
 
 }

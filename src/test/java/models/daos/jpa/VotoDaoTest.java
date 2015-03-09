@@ -1,22 +1,26 @@
 package models.daos.jpa;
 
 import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class VotoDaoTest {
 	private VotoDaoJpa votoDao;
-	private List<Voto> votosParaMeter = new ArrayList<Voto>();
+	private List<Voto> votosParaMeter;
 	private String ip = "192.168.1.1";
 	private Voto voto1;
 
 	@Before
 	public void init() {
-		votosParaMeter.clear();
+		votosParaMeter = new ArrayList<Voto>();
 		votoDao = new VotoDaoJpa();
 		voto1 = new Voto(new Integer(5), ip, NivelEstudios.ALTO);
 		votosParaMeter.add(voto1);
@@ -24,22 +28,21 @@ public class VotoDaoTest {
 
 	@Test
 	public void testCreate() {
-		votosParaMeter.add(new Voto(new Integer(7), ip, NivelEstudios.ALTO));
-		for (Voto voto : votosParaMeter)
-			votoDao.create(voto);
-		List<Voto> votos = votoDao.findByIp(ip);
-		assertArrayEquals(votos.toArray(), votosParaMeter.toArray());
+		Voto voto2 = new Voto(new Integer(6),ip, NivelEstudios.ALTO);
+		votoDao.create(voto2);
+		Voto votoBD = votoDao.findById(voto2.getId());
+		assertEquals(votoBD, voto2);
 	}
 
 	@Test
 	public void testRead() {
-		assertEquals(votoDao.read(1), voto1);
+		assertEquals(votoDao.read(voto1.getId()), voto1.getId());
 	}
 
 	@Test
 	public void testUpdate() {
 		int nuevaValoracion = 2;
-		Voto voto = votoDao.read(1);
+		Voto voto = votoDao.read(voto1.getId());
 		voto.setValoracion(nuevaValoracion);
 		votoDao.update(voto);
 		Voto votoCambiado = votoDao.read(1);
