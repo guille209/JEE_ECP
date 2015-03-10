@@ -1,5 +1,6 @@
 package models.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = Tema.TABLE)
 public class Tema {
-	
+
 	public static final String TABLE = "TEMA";
 
 	public static final String ID = "ID";
@@ -29,8 +30,6 @@ public class Tema {
 
 	public static final String VOTO_ID = "VOTO_ID";
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "tema")
-	private List<Voto> votos;
 
 	public Tema() {
 	}
@@ -39,8 +38,6 @@ public class Tema {
 		this.nombre = nombre;
 		this.pregunta = pregunta;
 	}
-	
-	
 
 	public Integer getId() {
 		return id;
@@ -66,31 +63,24 @@ public class Tema {
 		this.nombre = nombre;
 	}
 
-	public List<Voto> getVotos() {
-		return votos;
-	}
-
-	public void setVotos(List<Voto> votos) {
-		this.votos = votos;
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		Tema tema = (Tema) obj;
 		return this.nombre.equals(tema.getNombre())
-				&& this.pregunta.equals(tema.getPregunta())
-				&& this.votos.equals(tema.getVotos());
+				&& this.pregunta.equals(tema.getPregunta());
 	}
 
 	@Override
 	public String toString() {
 		return "Tema[id=" + id + ",pregunta=" + pregunta + ",nombre=" + nombre
-				+ ",votos=" + votos.toString() + "]";
+				+ "]";
 	}
 
 	@Override
 	public Tema clone() {
-		return new Tema(nombre, pregunta);
+			return new Tema(nombre, pregunta);
+
+
 	}
 
 }

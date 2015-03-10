@@ -1,15 +1,15 @@
 package models.daos.jpa;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
-import javax.persistence.criteria.*;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.logging.log4j.LogManager;
 
 import models.daos.GenericDao;
-import models.entities.Voto;
 
 public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
     private Class<T> persistentClass;
@@ -22,15 +22,12 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
     public void create(T entity) {
         EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory().createEntityManager();
         try {
-        	System.out.println(entityManager);
             entityManager.getTransaction().begin();
-            System.out.println(entityManager+"2");
+            System.out.println("Entidad: "+entity);
             entityManager.persist(entity);
-            System.out.println( entityManager.getTransaction()+"3");
+            System.out.println("Entitymanager.getTransaction(): "+entityManager.getTransaction());
             entityManager.getTransaction().commit();
-            System.out.println(entityManager+"4");
             LogManager.getLogger(GenericDaoJpa.class).debug("create: " + entity);
-            System.out.println(entityManager+"5");
         } catch (Exception e) {
             LogManager.getLogger(GenericDaoJpa.class).error("create: " + e);
             if (entityManager.getTransaction().isActive())
@@ -109,28 +106,6 @@ public class GenericDaoJpa<T, ID> implements GenericDao<T, ID> {
         List<T> result = typedQuery.getResultList();
         entityManager.close();
         return result;
-    }
-    
-    public T findById(ID id){
-    	EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory().createEntityManager();
-        CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> query = criteria.createQuery(this.persistentClass);
-
-        Root<T> root = query.from(this.persistentClass);
-
-        query.select(root); 
-
-        Predicate p1 = criteria.equal(root.get("id"),id);
-        query.where(p1);
-        // Se realiza la query
-        TypedQuery<T> typedQuery = entityManager.createQuery(query);
-        typedQuery.setFirstResult(0); // El primero es 0
-        typedQuery.setMaxResults(0); // Se realiza la query, se buscan todos
-        List<T> result = new ArrayList<T>();
-        result = typedQuery.getResultList();
-        entityManager.close();
-        System.out.println("Resultado-->  "+typedQuery);
-        return result.get(0);
     }
 
 }

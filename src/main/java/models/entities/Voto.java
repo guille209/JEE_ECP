@@ -31,8 +31,8 @@ public class Voto {
 
 	@Column(name = NIVELESTUDIOS)
 	private NivelEstudios nivelEstudios;
-
-	@ManyToOne
+	
+	@OneToOne
 	@JoinColumn
 	private Tema tema;
 
@@ -79,6 +79,16 @@ public class Voto {
 	public void setNivelEstudios(NivelEstudios nivelEstudios) {
 		this.nivelEstudios = nivelEstudios;
 	}
+	
+	
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,7 +100,7 @@ public class Voto {
 
 	public String toString() {
 		return "Voto[Valoracion" + (int) valoracion + ",ip=" + ip
-				+ ",nivel de estudios=" + nivelEstudios.name();
+				+ ",nivel de estudios=" + nivelEstudios.name()+" tema: "+tema+"]";
 	}
 
 	public Voto clone() {
