@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<navigation-rule>
+		<from-view-id>/jsf/navigator.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>rule1</from-outcome>
+			<to-view-id>/jsf/rule1Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>rule2</from-outcome>
+			<if>#{navigator.value}</if>
+			<to-view-id>/jsf/rule2Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>rule2</from-outcome>
+			<if>#{!navigator.value}</if>
+			<to-view-id>/jsf/rule1Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>staticPage</from-outcome>
+			<if>#{!navigator.value}</if>
+			<to-view-id>/jsf/staticPage.xhtml</to-view-id>
+		</navigation-case>
+		<!-- Por defecto -->
+		<navigation-case>
+			<if>#{!navigator.value}</if>
+			<to-view-id>/jsf/navigator.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>i18n.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+</faces-config>
