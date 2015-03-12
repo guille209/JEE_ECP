@@ -1,95 +1,60 @@
 package models.daos.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import models.daos.GenericDao;
 
-public class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
-	private Class<T> persistentClass;
-	private Connection conexion = null;
-	private Statement sentencia = null;
-	private ResultSet result = null;
+public abstract class GenericDaoJdbc<T, ID> implements GenericDao<T, ID> {
 
-	public GenericDaoJdbc(Class<T> persistentClass) {
-		this.persistentClass = persistentClass;
-		
-		conexion = null;
-        sentencia = null;
-        result = null;
-        String url = "jdbc:mysql://localhost:3306/miwjee";
-        String user = "root";
-        String pass = "";
+    protected static final String SQL_SELECT_ID = "SELECT * FROM %s WHERE ID=%d";
 
+    protected static final String SQL_SELECT_ALL = "SELECT * FROM %s";
+
+    protected static final String SQL_DELETE_ID = "DELETE FROM %s WHERE ID=%d";
+
+    protected static final String SQL_SELECT_LAST_ID = "SELECT LAST_INSERT_ID()";
+
+    protected Logger log = LogManager.getLogger(GenericDaoJdbc.class);
+
+    public ResultSet query(String sql) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, user, pass);
-            sentencia = conexion.createStatement();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Imposible cargar el driver: " + e.getMessage());
+            Statement statement = DaoJdbcFactory.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            this.log.debug("Query: " + sql);
+            return resultSet;
         } catch (SQLException e) {
-            System.out.println("Imposible conectar: " + e.getMessage());
+            this.log.error("Query SQL: ---" + sql + "---");
+            this.log.error(e.getMessage());
         }
-	}
+        return null;
+    }
 
-	@Override
-	public void create(T entity) {
-		// TODO Auto-generated method stub
-		try {
-            // begin
-            conexion.setAutoCommit(false);
-
-            // sentencias SQL
-            sentencia = conexion.createStatement();
-            sentencia.executeUpdate("INSERT tabla1 VALUES (8,'Trans1')");
-            sentencia.executeUpdate("INSERT tabla1 VALUES (8,'Trans2')");
-
-            // Si se llega a este punto, todo ha ido bien
-            conexion.commit();
+    public void updateSql(String sql) {
+        try {
+            Statement statement = DaoJdbcFactory.getConnection().createStatement();
+            statement.executeUpdate(sql);
+            this.log.debug("UpdateSql: " + sql);
         } catch (SQLException e) {
-            try {
-                // Hay problemas, se deshace todo
-                conexion.rollback();
-                System.out.println("Deshaciendo... " + e.getMessage());
-            } catch (SQLException e1) {
-                System.out.println("ERROR (rollback): " + e1.getMessage());
-            }
-        } finally {
-            try {
-                conexion.setAutoCommit(true);
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
+            this.log.error("Update SQL: ---" + sql + "---");
+            this.log.error(e.getMessage());
         }
+    }
 
-	}
-
-	@Override
-	public T read(ID id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(T entity) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteById(ID id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<T> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public int autoId() {
+        ResultSet resulSet = this.query(SQL_SELECT_LAST_ID);
+        try {
+            resulSet.next();
+            return resulSet.getInt(1);
+        } catch (SQLException e) {
+            this.log.error("Query SQL: ---" + SQL_SELECT_LAST_ID + "---");
+            this.log.error(e.getMessage());
+        }
+        return -1;
+    }
 
 }

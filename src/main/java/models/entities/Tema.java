@@ -28,9 +28,6 @@ public class Tema {
 	@Column(name = NOMBRE)
 	private String nombre;
 
-	public static final String VOTO_ID = "VOTO_ID";
-
-
 	public Tema() {
 	}
 
