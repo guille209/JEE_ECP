@@ -26,12 +26,21 @@ public class VotoDaoTest {
 	private Voto voto2;
 
 	private Tema tema;
+	
+	private static final int NUMERO_VOTOS_EN_TEMA = 2;
+	public static final List<Double> VALORACION_MEDIA_ESPERADA = new ArrayList<Double>();
 
 	@BeforeClass
 	public static void beforeClass() {
 
 		DaoFactory.setFactory(new DaoJpaFactory());
 		// DaoJpaFactory.dropAndCreateTables();
+		//Media para nivel estudios bajo
+		VALORACION_MEDIA_ESPERADA.add(-1.0);
+		//Media para nivel estudios bajo
+		VALORACION_MEDIA_ESPERADA.add(-1.0);
+		//Media para nivel estudios bajo
+		VALORACION_MEDIA_ESPERADA.add(4.0);
 	}
 
 	@Before
@@ -44,16 +53,18 @@ public class VotoDaoTest {
 		voto = new Voto(new Integer(5), ip, NivelEstudios.ALTO, tema);
 		voto2 = new Voto(new Integer(3), ip, NivelEstudios.ALTO, tema);
 		votosParaMeter.add(voto);
-		votosParaMeter.add(voto2);
+		votosParaMeter.add(voto2);	
 		temaDao.create(tema);
 		votoDao.create(voto);
 		votoDao.create(voto2);
+	
 	}
 
 	@After
 	public void after() {
 		votoDao.deleteById(voto.getId());
 		votoDao.deleteById(voto2.getId());
+		temaDao.deleteById(tema.getId());
 	}
 
 	@Test
@@ -85,5 +96,21 @@ public class VotoDaoTest {
 		assertEquals(listaVotos, votosParaMeter);
 
 	}
+	
+	@Test
+	public void testGetNumeroVotos(){
+		assertEquals(NUMERO_VOTOS_EN_TEMA,votoDao.getNumeroVotos(tema));
+	}
+	
+	@Test
+	public void testGetValoracionMedia(){
+		List<Double> valoracionesMedias = votoDao.getValoracionMedia();
+		System.out.println("Lista : "+valoracionesMedias);
+		assertEquals(VALORACION_MEDIA_ESPERADA,votoDao.getValoracionMedia());
+	}
 
+	@Test
+	public void testEliminarVotos(){
+		votoDao.eliminarVotos(tema);
+	}
 }
