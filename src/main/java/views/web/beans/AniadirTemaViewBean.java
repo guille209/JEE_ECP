@@ -7,12 +7,16 @@ import models.entities.Tema;
 
 import org.apache.logging.log4j.LogManager;
 
-public class AñadirTemaViewBean {
+import controllers.TemaController;
+
+public class AniadirTemaViewBean {
     private String errorMsg;
 
     private Tema tema;
+    private TemaController temaController;
 
-    public AñadirTemaViewBean() {
+    public AniadirTemaViewBean() {
+    	temaController = new TemaController();
     }
 
     public String getErrorMsg() {
@@ -29,16 +33,14 @@ public class AñadirTemaViewBean {
 
     public String process() {
         if (this.tema.getNombre()!=""&&this.tema.getPregunta()!="") {
-        	DaoFactory.setFactory(new DaoJpaFactory());
-        	TemaDao temaDao = DaoFactory.getFactory().getTemaDao(); 
-        	temaDao.create(tema);
-            LogManager.getLogger(AñadirTemaViewBean.class).debug(
+        	temaController.aniadirTema(tema);
+            LogManager.getLogger(AniadirTemaViewBean.class).debug(
                     "Se accede a la capa de negocio para registrar tema: " + tema);
             return "home";
         } else {
         	this.errorMsg = "Debe rellenar todos los campos";
             
-            return "votar";
+            return "aniadirTema";
         }
     }
 

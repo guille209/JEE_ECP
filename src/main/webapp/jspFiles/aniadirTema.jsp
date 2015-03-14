@@ -9,15 +9,15 @@
 </head>
 <body>
 <H1>ES LA HORA DE AÑADIR UN TEMA, ADELANTE!!</H1>
-	<c:set var="beanTema" scope="request" value="${añadirTemaView}" />
-
+	<!-- <c:set var="beanTema" scope="request" value="${añadirTemaView}" />
+-->
 	<form action="aniadirTema" method="post">
 		<p>
 			Nombre:<input name="nombre" type="text"
-				value="${beanTema.tema.nombre}" />${pView.errorMsg}</p>
+				value="" /></p>
 		<p>
 			Pregunta:<input name="pregunta" type="text"
-				value="${beanTema.tema.pregunta}" />${pView.errorMsg}
+				value="" />
 		</p>
 		<p>
 			<input type="submit" value="Enviar" />

@@ -8,9 +8,14 @@
 <title>Home</title>
 </head>
 <body>
-<p><a href="jsp/home">[JSP]Home</a></p>
-<p><a href="jsp/aniadirTema">[JSP]Añadir Tema</a></p>
-
+<h1>HOME</h1>
+<hr>
+<ul>
+<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
+<li><a href="/JEE/ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
+<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
+<li><a href="/JEE_ECP/jsp/eliminarTema">[JSP]Eliminar Tema</a></li>
+</ul>
 
 </body>
 </html>

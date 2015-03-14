@@ -1,19 +1,26 @@
 package views.web.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import models.entities.Tema;
-import views.web.beans.AñadirTemaViewBean;
+import models.utils.IdentificadorAutorizacion;
+import views.web.beans.AniadirTemaViewBean;
+import views.web.beans.HomeViewBean;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static String PATH_ROOT_VIEW = "/jspFiles/";
+	
+	private HomeViewBean homeViewBean;
+	private AniadirTemaViewBean aniadirTemaViewBean;
 
 	@Override
 	protected void doGet(HttpServletRequest request,
@@ -24,10 +31,14 @@ public class Dispatcher extends HttpServlet {
 		String view;
 		switch (action) {
 		case "aniadirTema":
-			AñadirTemaViewBean añadirTemaView = new AñadirTemaViewBean();
-			añadirTemaView.setTema(new Tema());
-			request.setAttribute(action, añadirTemaView);
 			view = action;
+			break;
+		case "eliminarTema":
+			//El get lo procesa el bean principal,porque la autenticacion es en el main
+			//Pero el post el bean de eliminar
+			homeViewBean = new HomeViewBean();
+			homeViewBean.setIdentificadorAutorizacion(new IdentificadorAutorizacion(Integer.parseInt(request.getParameter("identificadorAutorizacion"))));
+			view = homeViewBean.process();
 			break;
 
 		default:
@@ -49,16 +60,10 @@ public class Dispatcher extends HttpServlet {
 		case "aniadirTema":
 			Tema tema = new Tema(request.getParameter("nombre"),
 					request.getParameter("pregunta"));
-			AñadirTemaViewBean añadirTemaView = new AñadirTemaViewBean();
-			añadirTemaView.setTema(tema);
-			request.setAttribute(action, añadirTemaView);
-			view = añadirTemaView.process();
-			break;
-		case "rol":
-			// RolView rolView = new RolView();
-			// rolView.setRol(request.getParameter("rol"));
-			// request.setAttribute(action, rolView);
-			// view = rolView.process();
+			aniadirTemaViewBean = new AniadirTemaViewBean();
+			aniadirTemaViewBean.setTema(tema);
+			request.setAttribute(action, aniadirTemaViewBean);
+			view = aniadirTemaViewBean.process();
 			break;
 		}
 
