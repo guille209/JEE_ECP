@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>AÑADIR TEMA</title>
+<title>Home</title>
 </head>
 <body>
-<H1>SOY HOME</H1>
+<p><a href="jsp/home">[JSP]Home</a></p>
+<p><a href="jsp/aniadirTema">[JSP]Añadir Tema</a></p>
 
 
 </body>
