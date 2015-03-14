@@ -8,7 +8,7 @@
 <title>AÑADIR TEMA</title>
 </head>
 <body>
-<H1>ES LA HORA DE AÑADIR UN TEMA, ADELANTE!!</H1>
+<H1>Añadir Tema</H1>
 	<!-- <c:set var="beanTema" scope="request" value="${añadirTemaView}" />
 -->
 	<form action="aniadirTema" method="post">
@@ -20,7 +20,7 @@
 				value="" />
 		</p>
 		<p>
-			<input type="submit" value="Enviar" />
+			<input type="submit" value="Añadir" />
 		</p>
 	</form>
 
