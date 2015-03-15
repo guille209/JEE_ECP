@@ -3,6 +3,7 @@ package models.utils;
 public class IdentificadorAutorizacion {
 	
 	private int valor;
+	private final static int CODIGO_CORRECTO =666;
 	
 	public IdentificadorAutorizacion(int valor){
 		this.valor = valor;
@@ -14,6 +15,10 @@ public class IdentificadorAutorizacion {
 
 	public void setValor(int valor) {
 		this.valor = valor;
+	}
+	
+	public boolean esCorrecto(){
+		return this.valor == CODIGO_CORRECTO;
 	}
 
 	@Override

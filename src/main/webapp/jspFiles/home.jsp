@@ -5,17 +5,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/home.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/home.css">
 <title>Home</title>
 </head>
 <body>
-<h1>HOME</h1>
-<hr>
-<ul>
-<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
-<li><a href="/JEE/ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
-<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
-<li><a href="/JEE_ECP/jsp/eliminarTema">[JSP]Eliminar Tema</a></li>
-</ul>
+	<c:set var="beanHome" scope="request" value="${HomeView}" />
+
+	<h1>HOME</h1>
+	<hr>
+	<ul>
+		<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
+		<li><a href="/JEE/ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
+		<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
+		<li><a href="" onClick="solicitarCodigo();">[JSP]Eliminar
+				Tema</a></li>
+	</ul>
+	
+	${beanHome.errorMsg}
+	
+	
 
 </body>
 </html>
