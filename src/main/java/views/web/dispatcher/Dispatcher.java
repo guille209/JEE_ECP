@@ -9,9 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.entities.Tema;
+import models.entities.Voto;
 import models.utils.IdentificadorAutorizacion;
+import models.utils.NivelEstudios;
 import views.web.beans.AniadirTemaBean;
+import views.web.beans.EliminarTemaBean;
 import views.web.beans.HomeBean;
+import views.web.beans.VerVotacionesBean;
+import views.web.beans.VotarBean;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -19,42 +24,46 @@ public class Dispatcher extends HttpServlet {
 
 	private static String PATH_ROOT_VIEW = "/jspFiles/";
 
-	private HomeBean homeBean;
+	private VotarBean votarBean;
 	private AniadirTemaBean aniadirTemaBean;
+	private VerVotacionesBean verVotacionesBean;
+	private EliminarTemaBean eliminarTemaBean;
 
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getPathInfo().substring(1);
-
 		String view;
 		switch (action) {
 		case "votar":
-			view = "votar";
+			votarBean = new VotarBean();
+			view = votarBean.processMostrarVotacion();
+			request.setAttribute(action, votarBean);
 			break;
 		case "verVotaciones":
-			view = "verVotaciones";
+			verVotacionesBean = new VerVotacionesBean();
+			view = verVotacionesBean.processverVotaciones();
+			request.setAttribute(action, verVotacionesBean);
 			break;
 		case "aniadirTema":
 			view = action;
 			break;
 		case "eliminarTema":
-			// El get lo procesa el bean principal,porque la autenticacion es en
-			// el main
-			// Pero el post el bean de eliminar
-			homeBean = new HomeBean();
-			homeBean.setIdentificadorAutorizacion(new IdentificadorAutorizacion(
-					Integer.parseInt(request
-							.getParameter("identificadorAutorizacion"))));
-			view = homeBean.process();
-			request.setAttribute("HomeView", homeBean);
+			eliminarTemaBean = new EliminarTemaBean();
+			eliminarTemaBean
+					.setIdentificadorAutorizacion(new IdentificadorAutorizacion(
+							Integer.parseInt(request
+									.getParameter("identificadorAutorizacion"))));
+			view = eliminarTemaBean.processAutenticacion();
+			request.setAttribute(action, eliminarTemaBean);
 			break;
 
 		default:
 			view = "home";
 		}
-		System.out.println("Redireccionando a " + PATH_ROOT_VIEW + view + ".jsp");
+		System.out.println("Redireccionando a " + PATH_ROOT_VIEW + view
+				+ ".jsp");
 		this.getServletContext()
 				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
 				.forward(request, response);
@@ -68,6 +77,13 @@ public class Dispatcher extends HttpServlet {
 		String view = "home";
 		switch (action) {
 		case "votar":
+			votarBean = new VotarBean();
+			votarBean.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
+			votarBean.setNivelEstudios(NivelEstudios.valueOf(request.getParameter("nivelEstudios")));
+			votarBean.setNombreTema(request.getParameter("nombreTema"));
+			votarBean.setIp(request.getRemoteAddr());	
+			view = votarBean.processGuardarVoto();
+
 			break;
 		case "verVotaciones":
 			break;
@@ -81,7 +97,6 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, aniadirTemaBean);
 			break;
 		case "eliminarTema":
-			System.out.println("[POST]LLevo a elimnar tema");
 			break;
 		}
 

@@ -41,7 +41,7 @@ public class AniadirTemaBean {
 			LogManager.getLogger(AniadirTemaBean.class).debug(
 					"Se accede a la capa de negocio para registrar tema: "
 							+ tema);
-			temaController.aniadirTema(tema);
+			temaController.addTema(tema);
 			return "home";
 		}
 	}

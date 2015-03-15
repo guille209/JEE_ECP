@@ -13,15 +13,15 @@
 <title>Home</title>
 </head>
 <body>
-	<c:set var="beanHome" scope="request" value="${HomeView}" />
+	<c:set var="beanHome" scope="request" value="${eliminarTema}" />
 
 	<h1>HOME</h1>
 	<hr>
 	<ul>
 		<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
-		<li><a href="/JEE/ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
+		<li><a href="/JEE_ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
 		<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
-		<li><a href="" onClick="solicitarCodigo();">[JSP]Eliminar
+		<li><a  onClick="solicitarCodigo();">[JSP]Eliminar
 				Tema</a></li>
 	</ul>
 	

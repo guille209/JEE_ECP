@@ -80,5 +80,11 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements
         }
         return list;	}
 
+	@Override
+	public Tema getTema(String nombreTema) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

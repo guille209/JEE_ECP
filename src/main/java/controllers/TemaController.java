@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.daos.VotoDao;
@@ -17,13 +19,22 @@ public class TemaController {
 		votoDao = DaoFactory.getFactory().getVotoDao();
 	}
 
-	public void aniadirTema(Tema tema) {
+	public void addTema(Tema tema) {
 		temaDao.create(tema);
 	}
 
-	public void eliminarTema(Tema tema) {
+	public void removeTema(Tema tema) {
 		//temaDao.remove(tema);
 		votoDao.eliminarVotos(tema);
 
+	}
+
+	public List<Tema> getTemas() {
+		return temaDao.findAll();
+		
+	}
+	
+	public Tema getTema(String nombreTema){
+		return temaDao.getTema(nombreTema);
 	}
 }

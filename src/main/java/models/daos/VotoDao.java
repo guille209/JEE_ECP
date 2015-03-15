@@ -1,6 +1,7 @@
 package models.daos;
 
 import java.util.List;
+import java.util.Map;
 
 import models.entities.Tema;
 import models.entities.Voto;
@@ -20,7 +21,7 @@ public interface VotoDao extends GenericDao<Voto, Integer> {
 	 * se devuelve un -1
 	 * @return
 	 */
-	List<Double> getValoracionMedia();
+	Map<String,Double> getValoracionMedia();
 	/**
 	 * 
 	 * @param tema

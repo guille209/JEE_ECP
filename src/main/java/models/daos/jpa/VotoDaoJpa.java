@@ -1,19 +1,20 @@
 package models.daos.jpa;
 
-import java.util.ArrayList;
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import models.daos.VotoDao;
 import models.entities.Tema;
 import models.entities.Voto;
-import models.utils.NivelEstudios;
 
 public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao {
 
@@ -45,19 +46,17 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao 
 	}
 
 	@Override
-	public List<Double> getValoracionMedia() {
-		// TODO Auto-generated method stub
-		List<Double> valoracionMedia = new ArrayList<Double>();
+	public Map<String, Double> getValoracionMedia() {
+
+		Map<String, Double> votacionMediaPorEstudios = new HashMap<String, Double>();
 		List<Voto> listaVotos = this.findAll();
-		int numNEBajo = 0;
-		int sumValBajo = 0;
-		int numNEMedio = 0;
-		int sumValMedio = 0;
-		int numNEAlto = 0;
-		int sumValAlto = 0;
-
+		double numNEBajo = 0.0;
+		double sumValBajo = 0.0;
+		double numNEMedio = 0.0;
+		double sumValMedio = 0.0;
+		double numNEAlto = 0.0;
+		double sumValAlto = 0.0;
 		for (Voto voto : listaVotos) {
-
 			switch (voto.getNivelEstudios()) {
 			case BAJO:
 				numNEBajo++;
@@ -73,22 +72,12 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao 
 				break;
 			}
 
-		}
-		if (numNEBajo != 0)
-			valoracionMedia.add((double) (sumValBajo / numNEBajo));
-		else
-			valoracionMedia.add((double) -1);
+		}	
+		votacionMediaPorEstudios.put("ALTO", sumValBajo / numNEBajo);
+		votacionMediaPorEstudios.put("MEDIO", sumValMedio / numNEMedio);
+		votacionMediaPorEstudios.put("BAJO", sumValAlto / numNEAlto);
 
-		if (numNEMedio != 0)
-			valoracionMedia.add((double) (sumValMedio / numNEMedio));
-		else
-			valoracionMedia.add((double) -1);
-
-		if (numNEAlto != 0)
-			valoracionMedia.add((double) (sumValAlto / numNEAlto));
-		else
-			valoracionMedia.add((double) -1);
-		return valoracionMedia;
+		return votacionMediaPorEstudios;
 	}
 
 	@Override
