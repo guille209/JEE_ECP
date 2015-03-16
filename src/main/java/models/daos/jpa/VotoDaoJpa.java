@@ -71,7 +71,6 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao 
 				sumValAlto += voto.getValoracion();
 				break;
 			}
-
 		}	
 		votacionMediaPorEstudios.put("ALTO", sumValBajo / numNEBajo);
 		votacionMediaPorEstudios.put("MEDIO", sumValMedio / numNEMedio);
