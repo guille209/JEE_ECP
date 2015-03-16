@@ -2,7 +2,7 @@
 function solicitarCodigo() {
 	var mensajeCodigo = prompt(
 			"Porfavor introduzca el identificador de autorizacion", "");
-	if (mensajeCodigo != "") {alert("Hago  un get al servidor");
+	if (mensajeCodigo != "") {
 		$.get( "/JEE_ECP/jsp/eliminarTema", { identificadorAutorizacion: mensajeCodigo } );
 	}
 	

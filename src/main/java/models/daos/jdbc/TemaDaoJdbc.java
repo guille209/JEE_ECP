@@ -86,5 +86,11 @@ public class TemaDaoJdbc extends GenericDaoJdbc<Tema, Integer> implements
 		return null;
 	}
 
+	@Override
+	public void removeByName(String nombreTema) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

@@ -14,7 +14,7 @@ public class VotarBean {
 	private TemaController temaController;
 	private VotoController votoController;
 	private List<Tema> listaTemas;
-
+	private List<NivelEstudios> listaNivelEstudios;
 	private int valoracion;
 	private NivelEstudios nivelEstudios;
 	private String nombreTema;
@@ -64,9 +64,22 @@ public class VotarBean {
 		this.ip = ip;
 	}
 
+	public List<NivelEstudios> getListaNivelEstudios() {
+		return listaNivelEstudios;
+	}
+
+	public void setListaNivelEstudios(List<NivelEstudios> listaNivelEstudios) {
+		this.listaNivelEstudios = listaNivelEstudios;
+	}
+
 	public String processMostrarVotacion() {
 		temaController = new TemaController();
 		listaTemas = new ArrayList<Tema>();
+		listaNivelEstudios = new ArrayList<NivelEstudios>();
+		listaNivelEstudios.add(NivelEstudios.ALTO);
+		listaNivelEstudios.add(NivelEstudios.MEDIO);
+		listaNivelEstudios.add(NivelEstudios.BAJO);
+
 		listaTemas = temaController.getTemas();
 		return "votar";
 	}

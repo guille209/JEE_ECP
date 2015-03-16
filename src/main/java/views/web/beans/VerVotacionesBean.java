@@ -51,6 +51,7 @@ public class VerVotacionesBean {
 		numeroVotosPorTema = new HashMap<String,Integer>();
 		votacionMediaPorEstudios = new HashMap<String,Double>();
 		
+		
 		numeroVotosPorTema = votoController.getNumeroVotos();
 		votacionMediaPorEstudios = votoController.getValoracionMedia();
 		return "verVotaciones";

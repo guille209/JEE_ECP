@@ -97,6 +97,10 @@ public class Dispatcher extends HttpServlet {
 			request.setAttribute(action, aniadirTemaBean);
 			break;
 		case "eliminarTema":
+			eliminarTemaBean = new EliminarTemaBean();
+			eliminarTemaBean.setTemaEliminar(request.getParameter("nivelEstudios"));
+			view = eliminarTemaBean.processEliminarTema();
+			
 			break;
 		}
 

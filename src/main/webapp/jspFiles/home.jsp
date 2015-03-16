@@ -21,13 +21,16 @@
 		<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
 		<li><a href="/JEE_ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
 		<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
-		<li><a  onClick="solicitarCodigo();">[JSP]Eliminar
-				Tema</a></li>
+		<form action="/JEE_ECP/jsp/eliminarTema" method="get">
+			<li><input type="submit" value="[JSP]Eliminar Tema"><input
+				type="text" name="identificadorAutorizacion" placeholder="Identificador"></li> 
+		</form>
+
 	</ul>
-	
+
 	${beanHome.errorMsg}
-	
-	
+
+
 
 </body>
 </html>

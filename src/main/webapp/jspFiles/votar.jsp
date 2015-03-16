@@ -26,9 +26,9 @@
 			min="0" max="10" onchange="updateTextInput(this.value);"> <input
 			type="text" id="textInput" value="" style="width: 10px;" disabled>
 		<label>Nivel de estudios</label> <select name="nivelEstudios">
-			<option value="ALTO">ALTO</option>
-			<option value="MEDIO">MEDIO</option>
-			<option value="BAJO">BAJO</option>
+			<c:forEach var="value" items="${votar.listaNivelEstudios}">
+				<option value="${value}">${value}</option>
+			</c:forEach>
 		</select> <input type="text" id="nombreTema" name="nombreTema"
 			style="display: none;"> <input type="submit" value="Votar">
 	</form>

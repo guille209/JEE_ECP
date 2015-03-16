@@ -23,9 +23,10 @@ public class TemaController {
 		temaDao.create(tema);
 	}
 
-	public void removeTema(Tema tema) {
-		//temaDao.remove(tema);
-		votoDao.eliminarVotos(tema);
+	public void removeTema(String nombreTema) {
+		Tema temaBorrar = temaDao.getTema(nombreTema);
+		votoDao.eliminarVotos(temaBorrar);
+		temaDao.deleteById(temaBorrar.getId());		
 
 	}
 

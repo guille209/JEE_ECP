@@ -38,4 +38,29 @@ public class TemaDaoJpa extends GenericDaoJpa<Tema, Integer> implements TemaDao 
 		System.out.println("Voy a buscar en la columna nombre: "+nombreTema);
 		return entityManager.createQuery(query).getSingleResult();
 	}
+
+	@Override
+	public void removeByName(String nombreTema) {
+		// TODO Auto-generated method stub
+		
+		EntityManager entityManager = DaoJpaFactory.getEntityManagerFactory()
+				.createEntityManager();
+		CriteriaBuilder criteria = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Tema> query = criteria.createQuery(Tema.class);
+
+		Root<Tema> root = query.from(Tema.class);
+
+		query.select(root);
+
+		Predicate p1 = criteria.equal(root.get("nombre"), nombreTema);
+		query.where(p1);
+		// Se realiza la query
+		query.select(root).where(p1);
+		entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.createQuery(query).getSingleResult());
+        entityManager.getTransaction().commit();
+		return ;
+		
+		
+	}
 }
