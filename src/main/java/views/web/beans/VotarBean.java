@@ -3,12 +3,14 @@ package views.web.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
 import controllers.TemaController;
 import controllers.VotoController;
-
+@ManagedBean
 public class VotarBean {
 
 	private TemaController temaController;

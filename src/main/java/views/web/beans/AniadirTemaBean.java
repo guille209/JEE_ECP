@@ -1,5 +1,7 @@
 package views.web.beans;
 
+import javax.faces.bean.ManagedBean;
+
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.daos.jpa.DaoJpaFactory;
@@ -9,6 +11,10 @@ import org.apache.logging.log4j.LogManager;
 
 import controllers.TemaController;
 
+//Singleton o inyecccion
+//Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual
+//Poniendo esta anotacion el dispatcher de jsf hace toda la inyeccion
+@ManagedBean
 public class AniadirTemaBean {
 	private String errorMsg;
 

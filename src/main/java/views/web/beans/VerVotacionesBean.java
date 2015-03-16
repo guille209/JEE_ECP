@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.bean.ManagedBean;
+
 import models.entities.Tema;
 import controllers.TemaController;
 import controllers.VotoController;
-
+@ManagedBean
 public class VerVotacionesBean {
 
 	private VotoController votoController;

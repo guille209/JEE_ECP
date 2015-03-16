@@ -3,10 +3,13 @@ package views.web.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+
 import controllers.TemaController;
 import models.entities.Tema;
 import models.utils.IdentificadorAutorizacion;
 
+@ManagedBean
 public class EliminarTemaBean {
 
 	private IdentificadorAutorizacion identificadorAutorizacion;
