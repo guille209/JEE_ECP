@@ -16,14 +16,14 @@
 	#{verVotacionesBean.update()}
 
 	 <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
-	Tema: #{entry.key}
- 	Numero Votos: #{entry.value}
+	<p>Tema: #{entry.key}</p>
+ 	<p>Numero Votos: #{entry.value} </p>
 	</ui:repeat>
 
 	<ui:repeat value="#{verVotacionesBean.votacionMediaPorEstudios}"
 		var="entry">
-	NivelEstudios: #{entry.key}
- 	Media: #{entry.value}
+	<p>NivelEstudios: #{entry.key}</p>
+ 	<p>Media: #{entry.value}</p>
 	</ui:repeat>
 </h:body>
 </html>
