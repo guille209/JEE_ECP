@@ -4,26 +4,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
 
 
 <h:head>
 	<title>Ver votaciones</title>
 </h:head>
 <h:body>
-	<h1>Ver votaciones</h1>	 
+	<h1>Ver votaciones</h1>
 	#{verVotacionesBean.update()}
 
-	 <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
-	<p>Tema: #{entry.key}</p>
- 	<p>Numero Votos: #{entry.value} </p>
+<!-- 	 <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
+		<p>Tema: #{entry.key}</p>
+		<p>Numero Votos: #{entry.value}</p>
 	</ui:repeat>
 
 	<ui:repeat value="#{verVotacionesBean.votacionMediaPorEstudios}"
 		var="entry">
-	<p>NivelEstudios: #{entry.key}</p>
- 	<p>Media: #{entry.value}</p>
-	</ui:repeat>
+		<p>NivelEstudios: #{entry.key}</p>
+		<p>Media: #{entry.value}</p>
+	</ui:repeat> -->
+
+
+
+	<c:forEach var="type" items="${verVotacionesBean.numeroVotosPorTema}">
+   		<p>Tema  ${type.key}
+   		Numero Votos  ${type.value}</p>
+	</c:forEach>
+<br><br></br></br>
+	<c:forEach var="type" items="${verVotacionesBean.votacionMediaPorEstudios}">
+   		<p>Nivel Estudios  ${type.key}
+   		Media  ${type.value}</p>
+	</c:forEach>
+
 </h:body>
 </html>
