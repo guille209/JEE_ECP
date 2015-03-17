@@ -56,6 +56,7 @@ public class EliminarTemaBean extends ViewBean{
 	
 	public String processEliminarTema(){
 		temaController = new TemaController();
+		System.out.println("A eliminar es "+nombreTemaEliminar);
 		temaController.removeTema(nombreTemaEliminar);
 		return "home";
 	}
