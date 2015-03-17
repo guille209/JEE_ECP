@@ -13,14 +13,14 @@
 </h:head>
 <h:body>
 	<h1>Ver votaciones</h1>	 
-	#{verVotacionesBean.processverVotaciones()}
+	#{verVotacionesBean.update()}
 
-	 <ui:repeat value="#{VerVotacionesBean.numeroVotosPorTema}" var="entry">
+	 <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
 	Tema: #{entry.key}
  	Numero Votos: #{entry.value}
 	</ui:repeat>
 
-	<ui:repeat value="#{VerVotacionesBean.votacionMediaPorEstudios}"
+	<ui:repeat value="#{verVotacionesBean.votacionMediaPorEstudios}"
 		var="entry">
 	NivelEstudios: #{entry.key}
  	Media: #{entry.value}

@@ -1,5 +1,10 @@
 package controllers;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name = "controllerFactory")
+@ApplicationScoped
 public class ControllerFactory {
 
 	private TemaController temaController;
