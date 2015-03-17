@@ -21,7 +21,7 @@
 		<li><a href="/JEE_ECP/jsp/votar">[JSP]Votar</a></li>
 		<li><a href="/JEE_ECP/jsp/verVotaciones">[JSP]Ver votaciones</a></li>
 		<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
-		<form action="/JEE_ECP/jsp/eliminarTema" method="get">
+		<form action="/JEE_ECP/jsp/identificarEliminar" method="POST">
 			<li><input type="submit" value="[JSP]Eliminar Tema"><input
 				type="text" name="identificadorAutorizacion" placeholder="Identificador"></li> 
 		</form>

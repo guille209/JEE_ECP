@@ -8,6 +8,8 @@
 <title>ELIMINAR</title>
 </head>
 <body>
+<c:set var="pView" scope="request" value="${eliminarTema}" />
+<div>${pView.update()}</div>
 	<form action="eliminarTema" method="POST">
 		<select name="nivelEstudios">
 			<c:forEach var="value" items="${eliminarTema.listaTemas}">

@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ver votacionese</title>
 </head>
 <body>
-
+<c:set var="pView" scope="request" value="${verVotaciones}" />
+<div>${pView.update()}</div>
+<h1>Ver votaciones</h1>
 	<c:forEach var="entry" items="${verVotaciones.numeroVotosPorTema}">
   Tema: <c:out value="${entry.key}" />
   Numero de votos: <c:out value="${entry.value}" />

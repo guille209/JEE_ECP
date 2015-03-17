@@ -4,21 +4,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import models.entities.Tema;
 import controllers.TemaController;
 import controllers.VotoController;
+
 @ManagedBean
-public class VerVotacionesBean {
+public class VerVotacionesBean extends ViewBean {
 
 	private VotoController votoController;
 
 	private Map<String, Integer> numeroVotosPorTema;
-	private Map<String,Double> votacionMediaPorEstudios;
+	private Map<String, Double> votacionMediaPorEstudios;
 
 	public VerVotacionesBean() {
-
+		// Llamar a update
 	}
 
 	public VotoController getVotoController() {
@@ -36,8 +38,6 @@ public class VerVotacionesBean {
 	public void setNumeroVotosPorTema(Map<String, Integer> numeroVotosPorTema) {
 		this.numeroVotosPorTema = numeroVotosPorTema;
 	}
-	
-	
 
 	public Map<String, Double> getVotacionMediaPorEstudios() {
 		return votacionMediaPorEstudios;
@@ -48,14 +48,14 @@ public class VerVotacionesBean {
 		this.votacionMediaPorEstudios = votacionMediaPorEstudios;
 	}
 
-	public String processverVotaciones() {
-		votoController = new VotoController();
-		numeroVotosPorTema = new HashMap<String,Integer>();
-		votacionMediaPorEstudios = new HashMap<String,Double>();
-		
-		
+	@PostConstruct
+	public void update() {
+		votoController = this.getControllerFactory().getVotoController();
+		numeroVotosPorTema = new HashMap<String, Integer>();
+		votacionMediaPorEstudios = new HashMap<String, Double>();
+
 		numeroVotosPorTema = votoController.getNumeroVotos();
 		votacionMediaPorEstudios = votoController.getValoracionMedia();
-		return "verVotaciones";
+
 	}
 }

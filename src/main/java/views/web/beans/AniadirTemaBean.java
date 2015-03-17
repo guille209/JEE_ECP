@@ -15,14 +15,13 @@ import controllers.TemaController;
 //Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual
 //Poniendo esta anotacion el dispatcher de jsf hace toda la inyeccion
 @ManagedBean
-public class AniadirTemaBean {
+public class AniadirTemaBean extends ViewBean {
 	private String errorMsg;
 
 	private Tema tema;
 	private TemaController temaController;
 
 	public AniadirTemaBean() {
-		temaController = new TemaController();
 	}
 
 	public String getErrorMsg() {
@@ -38,6 +37,7 @@ public class AniadirTemaBean {
 	}
 
 	public String process() {
+		temaController = this.getControllerFactory().getTemaController();
 		if (this.tema.getNombre() == "" || this.tema.getPregunta() == "") {
 			this.errorMsg = "Debe rellenar todos los campos";
 			return "aniadirTema";

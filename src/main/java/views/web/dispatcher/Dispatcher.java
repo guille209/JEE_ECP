@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.ControllerFactory;
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.IdentificadorAutorizacion;
@@ -24,10 +25,15 @@ public class Dispatcher extends HttpServlet {
 
 	private static String PATH_ROOT_VIEW = "/jspFiles/";
 
-	private VotarBean votarBean;
-	private AniadirTemaBean aniadirTemaBean;
-	private VerVotacionesBean verVotacionesBean;
-	private EliminarTemaBean eliminarTemaBean;
+	private ControllerFactory controllerFactory;
+
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		System.out.println("Inicializo controllerfactory");
+		controllerFactory = new ControllerFactory();
+
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request,
@@ -37,26 +43,19 @@ public class Dispatcher extends HttpServlet {
 		String view;
 		switch (action) {
 		case "votar":
-			votarBean = new VotarBean();
-			view = votarBean.processMostrarVotacion();
+			VotarBean votarBean = new VotarBean();
+			votarBean.setControllerFactory(controllerFactory);
 			request.setAttribute(action, votarBean);
+			view = action;
 			break;
 		case "verVotaciones":
-			verVotacionesBean = new VerVotacionesBean();
-			view = verVotacionesBean.processverVotaciones();
+			VerVotacionesBean verVotacionesBean = new VerVotacionesBean();
+			verVotacionesBean.setControllerFactory(controllerFactory);
 			request.setAttribute(action, verVotacionesBean);
+			view = action;
 			break;
 		case "aniadirTema":
 			view = action;
-			break;
-		case "eliminarTema":
-			eliminarTemaBean = new EliminarTemaBean();
-			eliminarTemaBean
-					.setIdentificadorAutorizacion(new IdentificadorAutorizacion(
-							Integer.parseInt(request
-									.getParameter("identificadorAutorizacion"))));
-			view = eliminarTemaBean.processAutenticacion();
-			request.setAttribute(action, eliminarTemaBean);
 			break;
 
 		default:
@@ -75,13 +74,24 @@ public class Dispatcher extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getPathInfo().substring(1);
 		String view = "home";
+
 		switch (action) {
 		case "votar":
-			votarBean = new VotarBean();
-			votarBean.setValoracion(Integer.parseInt(request.getParameter("valoracion")));
-			votarBean.setNivelEstudios(NivelEstudios.valueOf(request.getParameter("nivelEstudios")));
+			VotarBean votarBean = new VotarBean();
+			votarBean.setControllerFactory(controllerFactory);
+
 			votarBean.setNombreTema(request.getParameter("nombreTema"));
-			votarBean.setIp(request.getRemoteAddr());	
+			Voto voto = new Voto();
+			voto.setValoracion(Integer.parseInt(request
+					.getParameter("valoracion")));
+			voto.setNivelEstudios(NivelEstudios.valueOf(request
+					.getParameter("nivelEstudios")));
+			voto.setIp(request.getRemoteAddr());
+			voto.setValoracion(Integer.parseInt(request
+					.getParameter("valoracion")));
+
+			votarBean.setVoto(voto);
+
 			view = votarBean.processGuardarVoto();
 
 			break;
@@ -91,16 +101,28 @@ public class Dispatcher extends HttpServlet {
 		case "aniadirTema":
 			Tema tema = new Tema(request.getParameter("nombre"),
 					request.getParameter("pregunta"));
-			aniadirTemaBean = new AniadirTemaBean();
+			AniadirTemaBean aniadirTemaBean = new AniadirTemaBean();
+			aniadirTemaBean.setControllerFactory(controllerFactory);
 			aniadirTemaBean.setTema(tema);
 			view = aniadirTemaBean.process();
 			request.setAttribute(action, aniadirTemaBean);
 			break;
 		case "eliminarTema":
-			eliminarTemaBean = new EliminarTemaBean();
-			eliminarTemaBean.setTemaEliminar(request.getParameter("nivelEstudios"));
+			EliminarTemaBean eliminarTemaBean = new EliminarTemaBean();
+			eliminarTemaBean.setControllerFactory(controllerFactory);
+			eliminarTemaBean.setTemaEliminar(request
+					.getParameter("nivelEstudios"));
 			view = eliminarTemaBean.processEliminarTema();
-			
+			break;
+		case "identificarEliminar":
+			EliminarTemaBean eliminarTemaBean2 = new EliminarTemaBean();
+			eliminarTemaBean2.setControllerFactory(controllerFactory);
+			eliminarTemaBean2
+					.setIdentificadorAutorizacion(new IdentificadorAutorizacion(
+							Integer.parseInt(request
+									.getParameter("identificadorAutorizacion"))));
+			view = eliminarTemaBean2.processIdentificar();
+			request.setAttribute(action, eliminarTemaBean2);
 			break;
 		}
 

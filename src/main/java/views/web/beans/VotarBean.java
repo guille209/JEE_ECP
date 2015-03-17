@@ -3,6 +3,7 @@ package views.web.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import models.entities.Tema;
@@ -11,19 +12,25 @@ import models.utils.NivelEstudios;
 import controllers.TemaController;
 import controllers.VotoController;
 @ManagedBean
-public class VotarBean {
+public class VotarBean extends ViewBean{
 
 	private TemaController temaController;
 	private VotoController votoController;
 	private List<Tema> listaTemas;
 	private List<NivelEstudios> listaNivelEstudios;
-	private int valoracion;
-	private NivelEstudios nivelEstudios;
 	private String nombreTema;
-	private String ip;
+	private Voto voto;
 
 	public VotarBean() {
 
+	}
+
+	public Voto getVoto() {
+		return voto;
+	}
+
+	public void setVoto(Voto voto) {
+		this.voto = voto;
 	}
 
 	public List<Tema> getListaTemas() {
@@ -34,36 +41,12 @@ public class VotarBean {
 		this.listaTemas = listaTemas;
 	}
 
-	public int getValoracion() {
-		return valoracion;
-	}
-
-	public void setValoracion(int valoracion) {
-		this.valoracion = valoracion;
-	}
-
-	public NivelEstudios getNivelEstudios() {
-		return nivelEstudios;
-	}
-
-	public void setNivelEstudios(NivelEstudios nivelEstudios) {
-		this.nivelEstudios = nivelEstudios;
-	}
-
 	public String getNombreTema() {
 		return nombreTema;
 	}
 
 	public void setNombreTema(String nombreTema) {
 		this.nombreTema = nombreTema;
-	}
-
-	public String getIp() {
-		return ip;
-	}
-
-	public void setIp(String ip) {
-		this.ip = ip;
 	}
 
 	public List<NivelEstudios> getListaNivelEstudios() {
@@ -74,8 +57,9 @@ public class VotarBean {
 		this.listaNivelEstudios = listaNivelEstudios;
 	}
 
-	public String processMostrarVotacion() {
-		temaController = new TemaController();
+	@PostConstruct
+	public void update(){
+		temaController = this.getControllerFactory().getTemaController();
 		listaTemas = new ArrayList<Tema>();
 		listaNivelEstudios = new ArrayList<NivelEstudios>();
 		listaNivelEstudios.add(NivelEstudios.ALTO);
@@ -83,17 +67,14 @@ public class VotarBean {
 		listaNivelEstudios.add(NivelEstudios.BAJO);
 
 		listaTemas = temaController.getTemas();
-		return "votar";
 	}
 
 	public String processGuardarVoto() {
-		// TODO Auto-generated method stub
-		votoController = new VotoController();
-		temaController = new TemaController();
+		votoController = this.getControllerFactory().getVotoController();
+		temaController = this.getControllerFactory().getTemaController();
 		Tema tema = temaController.getTema(this.nombreTema);
-		Voto voto = new Voto(valoracion, ip, nivelEstudios, tema);
+		voto.setTema(tema);
 		votoController.addVoto(voto);
-
 		return "home";
 	}
 }

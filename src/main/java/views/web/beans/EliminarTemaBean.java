@@ -10,7 +10,7 @@ import models.entities.Tema;
 import models.utils.IdentificadorAutorizacion;
 
 @ManagedBean
-public class EliminarTemaBean {
+public class EliminarTemaBean extends ViewBean{
 
 	private IdentificadorAutorizacion identificadorAutorizacion;
 	private String errorMsg;
@@ -52,24 +52,26 @@ public class EliminarTemaBean {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
+	
+	
+	public String processEliminarTema(){
+		temaController = new TemaController();
+		temaController.removeTema(nombreTemaEliminar);
+		return "home";
+	}
 
-	public String processAutenticacion() {
-		// Codigo verificacion
+	public String processIdentificar() {
+		// TODO Auto-generated method stub
 		if (this.identificadorAutorizacion.esCorrecto()) {
 			listaTemas = new ArrayList<Tema>();
-			temaController = new TemaController();
+			temaController = this.getControllerFactory().getTemaController();
 			listaTemas = temaController.getTemas();
 			return "eliminarTema";
 		} else {
 			this.errorMsg = "El identificador de autorización introducido no es correcto";
 			return "home";
 		}
-	}
-	
-	public String processEliminarTema(){
-		temaController = new TemaController();
-		temaController.removeTema(nombreTemaEliminar);
-		return "home";
+		
 	}
 
 }
