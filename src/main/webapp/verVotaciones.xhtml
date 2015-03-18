@@ -15,7 +15,8 @@
 	<h1>Ver votaciones</h1>
 	#{verVotacionesBean.update()}
 
-<!-- 	 <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
+<!-- NO VALE PARA HASHMAPS 	
+ <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
 		<p>Tema: #{entry.key}</p>
 		<p>Numero Votos: #{entry.value}</p>
 	</ui:repeat>
@@ -25,9 +26,7 @@
 		<p>NivelEstudios: #{entry.key}</p>
 		<p>Media: #{entry.value}</p>
 	</ui:repeat> -->
-
-
-
+	
 	<c:forEach var="type" items="${verVotacionesBean.numeroVotosPorTema}">
    		<p>Tema  ${type.key}
    		Numero Votos  ${type.value}</p>

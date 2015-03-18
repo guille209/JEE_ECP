@@ -2,13 +2,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <title>JSF 2: Hola JSF</title>
+	<title>Añadir Tema</title>
 </h:head>
 <h:body>
-    <h1>JSF 2: Hola JSF</h1>
-    <p>#{helloJSFBean.name}</p>
+	<h1>Añadir Tema</h1>
+
+	<h:form action="aniadirTema" method="post">
+		<p>
+			<h:outputLabel value="Nombre Tema: " style="font-weight:bold" />
+			<h:inputText value="${aniadirTemaBean.tema.nombre}" />
+		</p>
+		<p>
+			<h:outputLabel value="Pregunta: " style="font-weight:bold" />
+			<h:inputText value="${aniadirTemaBean.tema.pregunta}" />
+		</p>
+		<font color="red">${aniadirTemaBean.errorMsg}</font>
+		<p>
+			<h:commandButton value="Votar"
+				action="#{aniadirTemaBean.process}" />
+
+		</p>
+		</h:form>
 </h:body>
 </html>

@@ -10,12 +10,12 @@
 <h:body>
 	<h1>HOME</h1>
 		<ul>
-			<li><a href="votarJSF.xhtml">Votar</a></li>
+			<li><a href="votar.xhtml">Votar</a></li>
 			<li><a href="verVotaciones.xhtml">Ver votaciones</a></li>
 			<li><a href="aniadirTema.xhtml">Añadir Tema</a></li>
 			<h:form id="form" action="eliminarTema.xhtml" method="get">
 				<h:commandButton value="Eliminar tema" action="#{indexBean.submit}" />
-				<h:inputText  name="identificadorAutorizacion" placeholder="Identificador" typeid="input" value="#{indexBean.userInput}" />
+				<h:inputText  name="identificadorAutorizacion" placeholder="Identificador" typeid="input" value="#{eliminarTemaBean.identificadorAutorizacion.valor}" />
 			</h:form>
 		</ul>
 </h:body>

@@ -9,7 +9,7 @@ import models.entities.Tema;
 
 import org.apache.logging.log4j.LogManager;
 
-import controllers.TemaController;
+import controllers.ejbs.TemaController;
 
 //Singleton o inyecccion
 //Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual
@@ -22,6 +22,7 @@ public class AniadirTemaBean extends ViewBean {
 	private TemaController temaController;
 
 	public AniadirTemaBean() {
+		tema = new Tema();
 	}
 
 	public String getErrorMsg() {

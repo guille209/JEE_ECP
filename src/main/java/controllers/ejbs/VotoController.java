@@ -1,4 +1,4 @@
-package controllers;
+package controllers.ejbs;
 
 import java.util.HashMap;
 import java.util.Map;

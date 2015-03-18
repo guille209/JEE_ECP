@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import models.entities.Tema;
-import controllers.TemaController;
-import controllers.VotoController;
+import controllers.ejbs.TemaController;
+import controllers.ejbs.VotoController;
 
 @ManagedBean
 public class VerVotacionesBean extends ViewBean {

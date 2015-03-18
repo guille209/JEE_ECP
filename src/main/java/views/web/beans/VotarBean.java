@@ -9,8 +9,8 @@ import javax.faces.bean.ManagedBean;
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
-import controllers.TemaController;
-import controllers.VotoController;
+import controllers.ejbs.TemaController;
+import controllers.ejbs.VotoController;
 @ManagedBean
 public class VotarBean extends ViewBean{
 
@@ -70,6 +70,7 @@ public class VotarBean extends ViewBean{
 	}
 
 	public String processGuardarVoto() {
+		System.out.println("Mostrar "+voto);
 		votoController = this.getControllerFactory().getVotoController();
 		temaController = this.getControllerFactory().getTemaController();
 		Tema tema = temaController.getTema(this.nombreTema);

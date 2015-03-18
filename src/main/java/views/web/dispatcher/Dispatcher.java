@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.ControllerFactory;
+import controllers.ejbs.ControllerFactory;
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.IdentificadorAutorizacion;
@@ -89,7 +89,6 @@ public class Dispatcher extends HttpServlet {
 			voto.setIp(request.getRemoteAddr());
 			voto.setValoracion(Integer.parseInt(request
 					.getParameter("valoracion")));
-
 			votarBean.setVoto(voto);
 
 			view = votarBean.processGuardarVoto();

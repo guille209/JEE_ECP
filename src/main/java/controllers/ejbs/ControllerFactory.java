@@ -1,4 +1,4 @@
-package controllers;
+package controllers.ejbs;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;

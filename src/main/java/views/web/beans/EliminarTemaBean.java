@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-import controllers.TemaController;
+import controllers.ejbs.TemaController;
 import models.entities.Tema;
 import models.utils.IdentificadorAutorizacion;
 

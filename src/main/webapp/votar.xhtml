@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core">
+<h:head>
+	<h:outputStylesheet library="css" name="votar.css" />
+	<h:outputScript library="js" name="jquery-1.11.2.min.js" />
+	<h:outputScript library="js" name="votar.js" />
+	<title>Votar</title>
+</h:head>
+<h:body>
+	<h1>Es la hora de votar</h1>
+
+	<c:forEach var="tema" items="${votarBean.listaTemas}">
+		<p>
+			<button id="${tema.nombre}">${tema.nombre}</button>
+		</p>
+		<p class="oculto" id="pregunta${tema.nombre}">${tema.pregunta}</p>
+	</c:forEach>
+
+
+	<h:form id="form" class="oculto" method="POST">
+		<h:outputLabel>Valoracion:</h:outputLabel>
+		<select name="valoracion">
+			<c:forEach var="i" begin="1" end="10">
+				<option value="${i}">${i}</option>
+			</c:forEach>
+		</select>
+		<h:outputLabel>Nivel de estudios:</h:outputLabel>
+		<select name="nivelEstudios">
+			<c:forEach var="nivelEstudios"
+				items="${votarBean.listaNivelEstudios}">
+				<option value="${nivelEstudios}">${nivelEstudios}</option>
+			</c:forEach>
+		</select>
+		<h:inputText  id="nombreTema" name="nombreTema" style="display: none;" />
+		<h:commandButton value="Votar" action="#{votarBean.processGuardarVoto}" />
+	</h:form>
+
+
+	<!-- <h:form action="votar" method="POST" class="oculto" id="form">
+ <input type="text" id="nombreTema" name="nombreTema"
+			style="display: none;"> <input type="submit" value="Votar">
+	<form> -->
+
+
+
+
+</h:body>
+</html>
