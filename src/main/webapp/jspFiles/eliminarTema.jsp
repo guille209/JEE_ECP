@@ -8,6 +8,8 @@
 <title>ELIMINAR</title>
 </head>
 <body>
+	<c:set var="identificarEliminar" scope="request" value="${identificarEliminar}" />
+
 	<form action="eliminarTema" method="POST">
 		<select name="nivelEstudios">
 			<c:forEach var="value" items="${identificarEliminar.listaTemas}">
@@ -15,6 +17,7 @@
 			</c:forEach>
 		</select> <input type="submit" value="EliminarTema">
 	</form>
+	<font color="red">${identificarEliminar.errorMsg}</font>
 
 
 

@@ -25,6 +25,7 @@ public class VotarBean extends ViewBean{
 
 	}
 
+
 	public Voto getVoto() {
 		return voto;
 	}

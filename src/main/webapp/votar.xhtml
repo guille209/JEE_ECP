@@ -9,6 +9,13 @@
 	<h:outputStylesheet library="css" name="votar.css" />
 	<h:outputScript library="js" name="jquery-1.11.2.min.js" />
 	<h:outputScript library="js" name="votar.js" />
+	<h:outputScript target="body">
+           $("button").click(function(event) {  
+    	
+        var nombreTema = event.target.id;
+        $("#form input[type=text]").val(${votarBean.nombreTema});
+    });
+        </h:outputScript>
 	<title>Votar</title>
 </h:head>
 <h:body>
@@ -22,29 +29,38 @@
 	</c:forEach>
 
 
-	<h:form id="form" class="oculto" method="POST">
+
+	<h:form>
+		<h:selectOneMenu value="#{votarBean.nombreTema}">
+			<f:selectItems value="#{votarBean.listaTemas}" var="theme"
+				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
+			<f:ajax render="question vote submit" />
+		</h:selectOneMenu>
+		<h:selectOneMenu id="vote" value="#{votarBean.voto.nivelEstudios}">
+			<f:selectItems value="#{votarBean.listaNivelEstudios}" />
+		</h:selectOneMenu>
+		<h:commandButton id="submit" value="submit" type="submit"
+			action="#{votarBean.processGuardarVoto}" />
+	</h:form>
+
+
+	<!-- 	<h:form id="form" class="oculto" method="POST">
 		<h:outputLabel>Valoracion:</h:outputLabel>
-		<select name="valoracion">
+		<select name="valoracion" value="${votarBean.voto.nombreTema}">
 			<c:forEach var="i" begin="1" end="10">
 				<option value="${i}">${i}</option>
 			</c:forEach>
 		</select>
 		<h:outputLabel>Nivel de estudios:</h:outputLabel>
-		<select name="nivelEstudios">
+		<select name="nivelEstudios" value="${votarBean.listaNivelEstudios}">
 			<c:forEach var="nivelEstudios"
 				items="${votarBean.listaNivelEstudios}">
 				<option value="${nivelEstudios}">${nivelEstudios}</option>
 			</c:forEach>
 		</select>
-		<h:inputText  id="nombreTema" name="nombreTema" style="display: none;" />
+		<h:inputText name="nombreTema" value="${votarBean.nombreTema}" style="display: none;"/>style="display: none;
 		<h:commandButton value="Votar" action="#{votarBean.processGuardarVoto}" />
-	</h:form>
-
-
-	<!-- <h:form action="votar" method="POST" class="oculto" id="form">
- <input type="text" id="nombreTema" name="nombreTema"
-			style="display: none;"> <input type="submit" value="Votar">
-	<form> -->
+	</h:form> -->
 
 
 

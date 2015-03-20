@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controllers.ejbs.ControllerFactory;
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.IdentificadorAutorizacion;
 import models.utils.NivelEstudios;
 import views.web.beans.AniadirTemaBean;
 import views.web.beans.EliminarTemaBean;
-import views.web.beans.HomeBean;
 import views.web.beans.VerVotacionesBean;
 import views.web.beans.VotarBean;
+import views.web.beans.VoteSubmitView;
+import controllers.ejbs.ControllerFactory;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -43,9 +43,10 @@ public class Dispatcher extends HttpServlet {
 		String view;
 		switch (action) {
 		case "votar":
-			VotarBean votarBean = new VotarBean();
-			votarBean.setControllerFactory(controllerFactory);
-			request.setAttribute(action, votarBean);
+			VoteSubmitView voteSubmitView= new VoteSubmitView();
+			voteSubmitView.setControllerFactory(controllerFactory);
+
+			request.setAttribute(action, voteSubmitView);
 			view = action;
 			break;
 		case "verVotaciones":
@@ -90,7 +91,7 @@ public class Dispatcher extends HttpServlet {
 			voto.setValoracion(Integer.parseInt(request
 					.getParameter("valoracion")));
 			votarBean.setVoto(voto);
-
+			System.out.println(voto);
 			view = votarBean.processGuardarVoto();
 
 			break;

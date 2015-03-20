@@ -17,6 +17,8 @@ public class EliminarTemaBean extends ViewBean{
 	private List<Tema> listaTemas;
 	private TemaController temaController;
 	private String nombreTemaEliminar;
+	
+	
 
 	public IdentificadorAutorizacion getIdentificadorAutorizacion() {
 		return identificadorAutorizacion;
@@ -26,8 +28,6 @@ public class EliminarTemaBean extends ViewBean{
 			IdentificadorAutorizacion identificadorAutorizacion) {
 		this.identificadorAutorizacion = identificadorAutorizacion;
 	}
-	
-	
 
 	public List<Tema> getListaTemas() {
 		return listaTemas;

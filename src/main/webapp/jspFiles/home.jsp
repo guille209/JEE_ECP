@@ -23,7 +23,7 @@
 		<li><a href="/JEE_ECP/jsp/aniadirTema">[JSP]Añadir Tema</a></li>
 		<form action="/JEE_ECP/jsp/identificarEliminar" method="POST">
 			<li><input type="submit" value="[JSP]Eliminar Tema"><input
-				type="text" name="identificadorAutorizacion" placeholder="Identificador"></li> 
+				type="text" name="identificadorAutorizacion" placeholder="Identificador" required></li> 
 		</form>
 
 	</ul>

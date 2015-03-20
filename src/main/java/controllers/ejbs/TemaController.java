@@ -38,4 +38,8 @@ public class TemaController {
 	public Tema getTema(String nombreTema){
 		return temaDao.getTema(nombreTema);
 	}
+	
+	public Tema getTema(Integer id){
+		return temaDao.read(id);
+	}
 }

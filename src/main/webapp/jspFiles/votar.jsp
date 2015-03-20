@@ -18,7 +18,7 @@
 <c:set var="pView" scope="request" value="${votar}" />
 <div>${pView.update()}</div>
 
-	<c:forEach items="${votar.listaTemas}" var="tema">
+	<c:forEach items="${votar.themes}" var="tema">
 		<button id="${tema.nombre}">${tema.nombre}</button>
 		<p class="oculto" id="pregunta${tema.nombre}">${tema.pregunta}
 		<p>
