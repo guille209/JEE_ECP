@@ -23,8 +23,8 @@ public class TemaController {
 		temaDao.create(tema);
 	}
 
-	public void removeTema(String nombreTema) {
-		Tema temaBorrar = temaDao.getTema(nombreTema);
+	public void removeTema(int idTema) {
+		Tema temaBorrar = temaDao.read(idTema);
 		votoDao.eliminarVotos(temaBorrar);
 		temaDao.deleteById(temaBorrar.getId());		
 
@@ -41,5 +41,10 @@ public class TemaController {
 	
 	public Tema getTema(Integer id){
 		return temaDao.read(id);
+	}
+
+	public boolean identificar(int identificador) {
+		// TODO Auto-generated method stub
+		return identificador == 666;
 	}
 }

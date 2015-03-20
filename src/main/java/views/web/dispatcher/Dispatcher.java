@@ -110,16 +110,14 @@ public class Dispatcher extends HttpServlet {
 		case "eliminarTema":
 			EliminarTemaBean eliminarTemaBean = new EliminarTemaBean();
 			eliminarTemaBean.setControllerFactory(controllerFactory);
-			eliminarTemaBean.setTemaEliminar(request
-					.getParameter("nivelEstudios"));
+			eliminarTemaBean.setIdTemaEliminar(Integer.parseInt(request
+					.getParameter("nivelEstudios")));
 			view = eliminarTemaBean.processEliminarTema();
 			break;
 		case "identificarEliminar":
 			EliminarTemaBean eliminarTemaBean2 = new EliminarTemaBean();
 			eliminarTemaBean2.setControllerFactory(controllerFactory);
-			eliminarTemaBean2
-					.setIdentificadorAutorizacion(new IdentificadorAutorizacion(
-							Integer.parseInt(request
+			eliminarTemaBean2.setIdentificador(Integer.parseInt((request
 									.getParameter("identificadorAutorizacion"))));
 			view = eliminarTemaBean2.processIdentificar();
 			request.setAttribute(action, eliminarTemaBean2);
