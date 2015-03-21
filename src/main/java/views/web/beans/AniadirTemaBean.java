@@ -1,15 +1,11 @@
 package views.web.beans;
 
 import javax.faces.bean.ManagedBean;
-
-import models.daos.DaoFactory;
-import models.daos.TemaDao;
-import models.daos.jpa.DaoJpaFactory;
 import models.entities.Tema;
 
 import org.apache.logging.log4j.LogManager;
 
-import controllers.ejbs.TemaController;
+import controllers.ejbs.AniadirTemaController;
 
 //Singleton o inyecccion
 //Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual
@@ -19,7 +15,7 @@ public class AniadirTemaBean extends ViewBean {
 	private String errorMsg;
 
 	private Tema tema;
-	private TemaController temaController;
+	private AniadirTemaController aniadirTemaController;
 
 	public AniadirTemaBean() {
 		tema = new Tema();
@@ -38,7 +34,8 @@ public class AniadirTemaBean extends ViewBean {
 	}
 
 	public String process() {
-		temaController = this.getControllerFactory().getTemaController();
+		aniadirTemaController = this.getControllerFactory()
+				.getAniadirTemaController();
 		if (this.tema.getNombre() == "" || this.tema.getPregunta() == "") {
 			this.errorMsg = "Debe rellenar todos los campos";
 			return "aniadirTema";
@@ -48,7 +45,7 @@ public class AniadirTemaBean extends ViewBean {
 			LogManager.getLogger(AniadirTemaBean.class).debug(
 					"Se accede a la capa de negocio para registrar tema: "
 							+ tema);
-			temaController.addTema(tema);
+			aniadirTemaController.addTema(tema);
 			return "home";
 		}
 	}

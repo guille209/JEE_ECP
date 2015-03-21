@@ -1,26 +1,26 @@
 package views.web.beans;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import controllers.ejbs.TemaController;
 import models.entities.Tema;
 import models.utils.IdentificadorAutorizacion;
+import controllers.ejbs.EliminarTemaController;
 
 @ManagedBean
 @ViewScoped
-public class EliminarTemaBean extends ViewBean{
+public class EliminarTemaBean extends ViewBean {
 	private int identificador;
 	private IdentificadorAutorizacion identificadorAutorizacion;
 	private String errorMsg;
 	private List<Tema> listaTemas;
-	private TemaController temaController;
-	private int idTemaEliminar;	
-	
+	private EliminarTemaController eliminarTemaController;
+	private int idTemaEliminar;
 
 	public int getIdTemaEliminar() {
 		return idTemaEliminar;
@@ -62,32 +62,35 @@ public class EliminarTemaBean extends ViewBean{
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
-	
-	
-	public String processEliminarTema(){
-		temaController = this.getControllerFactory().getTemaController();
-		System.out.println("A eliminar es "+idTemaEliminar);
-		temaController.removeTema(idTemaEliminar);
+
+	public String processEliminarTema() {
+		eliminarTemaController = this.getControllerFactory()
+				.getEliminarTemaController();
+		System.out.println("A eliminar es " + idTemaEliminar);
+		eliminarTemaController.removeTema(idTemaEliminar);
 		return "home";
 	}
 
 	public String processIdentificar() {
-		// TODO Auto-generated method stub	
-		temaController = this.getControllerFactory().getTemaController();
-		if (temaController.identificar(this.identificador)) {
+		// TODO Auto-generated method stub
+		eliminarTemaController = this.getControllerFactory()
+				.getEliminarTemaController();
+		if (eliminarTemaController.identificar(this.identificador)) {
 			cargarTemas();
 			return "eliminarTema";
 		} else {
 			this.errorMsg = "El identificador de autorización introducido no es correcto";
 			return "home";
 		}
-		
+
 	}
+
 	@PostConstruct
-	public void cargarTemas(){
+	public void cargarTemas() {
 		listaTemas = new ArrayList<Tema>();
-		temaController = this.getControllerFactory().getTemaController();
-		listaTemas = temaController.getTemas();		
+		eliminarTemaController = this.getControllerFactory()
+				.getEliminarTemaController();
+		listaTemas = eliminarTemaController.getTemas();
 	}
 
 }

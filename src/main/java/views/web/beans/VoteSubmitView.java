@@ -1,6 +1,7 @@
 package views.web.beans;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,12 +9,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
-import controllers.ejbs.TemaController;
-import controllers.ejbs.VotoController;
+import controllers.ejbs.VotarController;
 
 @ManagedBean
 @ViewScoped
@@ -35,16 +34,14 @@ public class VoteSubmitView extends ViewBean{
 
 	private int voteValue;
 
-	private TemaController temaController;
-
-	private VotoController votoController;
+	private VotarController votarController;
 
     @PostConstruct
     public void update() {
         System.out.println("Se actualizan datos de la capa de negocio");
-        temaController = this.getControllerFactory().getTemaController();
+        votarController = this.getControllerFactory().getVotarController();
         themes = new ArrayList<Tema>();
-        themes = temaController.getTemas();
+        themes = votarController.getTemas();
         themeId = themes.get(0).getId();
         votes = new int[10];
         for (int i = 0; i < votes.length; i++) {
@@ -69,12 +66,8 @@ public class VoteSubmitView extends ViewBean{
 	}
 
 	private void updateVote() {
-    	System.out.println("lista de temas es "+themes);
-    	System.out.println("Cojo el de la posicion "+themeId);
-    	temaController = this.getControllerFactory().getTemaController();
-    	System.out.println("Controlador "+this.getControllerFactory().getTemaController());
-    	System.out.println("Tema recuperado "+temaController.getTema(themeId));
-    	question = temaController.getTema(themeId).getPregunta();
+    	votarController = this.getControllerFactory().getVotarController();
+    	question = votarController.getTema(themeId).getPregunta();
         voteValue = votes[0];
     }
 
@@ -106,12 +99,11 @@ public class VoteSubmitView extends ViewBean{
 	public String processVote() {
         System.out.println("Se accede a la capa de negocio --->>> TemaId: " + themeId
                 + "; voteValue: " + voteValue);
-        votoController = this.getControllerFactory().getVotoController();
-		temaController = this.getControllerFactory().getTemaController();
-		Tema tema = temaController.getTema(themeId);
+        votarController = this.getControllerFactory().getVotarController();
+		Tema tema = votarController.getTema(themeId);
 		Voto voto = new Voto(voteValue, this.getIp(),nivelEstudios , tema);
 		voto.setTema(tema);
-		votoController.addVoto(voto);
+		votarController.addVoto(voto);
 		return "home";
     }
 

@@ -10,13 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.entities.Tema;
 import models.entities.Voto;
-import models.utils.IdentificadorAutorizacion;
 import models.utils.NivelEstudios;
 import views.web.beans.AniadirTemaBean;
 import views.web.beans.EliminarTemaBean;
 import views.web.beans.VerVotacionesBean;
 import views.web.beans.VotarBean;
-import views.web.beans.VoteSubmitView;
 import controllers.ejbs.ControllerFactory;
 
 @WebServlet("/jsp/*")
@@ -43,10 +41,10 @@ public class Dispatcher extends HttpServlet {
 		String view;
 		switch (action) {
 		case "votar":
-			VoteSubmitView voteSubmitView= new VoteSubmitView();
-			voteSubmitView.setControllerFactory(controllerFactory);
+			VotarBean votarBean = new VotarBean();
+			votarBean.setControllerFactory(controllerFactory);
 
-			request.setAttribute(action, voteSubmitView);
+			request.setAttribute(action, votarBean);
 			view = action;
 			break;
 		case "verVotaciones":
@@ -78,6 +76,7 @@ public class Dispatcher extends HttpServlet {
 
 		switch (action) {
 		case "votar":
+
 			VotarBean votarBean = new VotarBean();
 			votarBean.setControllerFactory(controllerFactory);
 
@@ -118,7 +117,7 @@ public class Dispatcher extends HttpServlet {
 			EliminarTemaBean eliminarTemaBean2 = new EliminarTemaBean();
 			eliminarTemaBean2.setControllerFactory(controllerFactory);
 			eliminarTemaBean2.setIdentificador(Integer.parseInt((request
-									.getParameter("identificadorAutorizacion"))));
+					.getParameter("identificadorAutorizacion"))));
 			view = eliminarTemaBean2.processIdentificar();
 			request.setAttribute(action, eliminarTemaBean2);
 			break;

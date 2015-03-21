@@ -2,20 +2,17 @@ package views.web.beans;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
-import controllers.ejbs.TemaController;
-import controllers.ejbs.VotoController;
-@ManagedBean
-public class VotarBean extends ViewBean{
+import controllers.ejbs.VotarController;
 
-	private TemaController temaController;
-	private VotoController votoController;
+@ManagedBean
+public class VotarBean extends ViewBean {
+
+	private VotarController votarController;
 	private List<Tema> listaTemas;
 	private List<NivelEstudios> listaNivelEstudios;
 	private String nombreTema;
@@ -24,7 +21,6 @@ public class VotarBean extends ViewBean{
 	public VotarBean() {
 
 	}
-
 
 	public Voto getVoto() {
 		return voto;
@@ -59,24 +55,23 @@ public class VotarBean extends ViewBean{
 	}
 
 	@PostConstruct
-	public void update(){
-		temaController = this.getControllerFactory().getTemaController();
+	public void update() {
+		votarController = this.getControllerFactory().getVotarController();
 		listaTemas = new ArrayList<Tema>();
 		listaNivelEstudios = new ArrayList<NivelEstudios>();
 		listaNivelEstudios.add(NivelEstudios.ALTO);
 		listaNivelEstudios.add(NivelEstudios.MEDIO);
 		listaNivelEstudios.add(NivelEstudios.BAJO);
 
-		listaTemas = temaController.getTemas();
+		listaTemas = votarController.getTemas();
 	}
 
 	public String processGuardarVoto() {
-		System.out.println("Mostrar "+voto);
-		votoController = this.getControllerFactory().getVotoController();
-		temaController = this.getControllerFactory().getTemaController();
-		Tema tema = temaController.getTema(this.nombreTema);
+		System.out.println("Mostrar " + voto);
+		votarController = this.getControllerFactory().getVotarController();
+		Tema tema = votarController.getTema(this.nombreTema);
 		voto.setTema(tema);
-		votoController.addVoto(voto);
+		votarController.addVoto(voto);
 		return "home";
 	}
 }

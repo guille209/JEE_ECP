@@ -1,69 +1,37 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"        
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<h:outputStylesheet library="css" name="votar.css" />
-	<h:outputScript library="js" name="jquery-1.11.2.min.js" />
-	<h:outputScript library="js" name="votar.js" />
-	<h:outputScript target="body">
-           $("button").click(function(event) {  
-    	
-        var nombreTema = event.target.id;
-        $("#form input[type=text]").val(${votarBean.nombreTema});
-    });
-        </h:outputScript>
-	<title>Votar</title>
+	<title>JSF 2</title>
 </h:head>
 <h:body>
-	<h1>Es la hora de votar</h1>
-
-	<c:forEach var="tema" items="${votarBean.listaTemas}">
-		<p>
-			<button id="${tema.nombre}">${tema.nombre}</button>
-		</p>
-		<p class="oculto" id="pregunta${tema.nombre}">${tema.pregunta}</p>
-	</c:forEach>
-
-
-
+	<h3>JSF 2</h3>
 	<h:form>
-		<h:selectOneMenu value="#{votarBean.nombreTema}">
-			<f:selectItems value="#{votarBean.listaTemas}" var="theme"
+		<h:selectOneMenu value="#{voteSubmitView.themeId}">
+			<f:selectItems value="#{voteSubmitView.themes}" var="theme"
 				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
-			<f:ajax render="question vote submit" />
 		</h:selectOneMenu>
-		<h:selectOneMenu id="vote" value="#{votarBean.voto.nivelEstudios}">
-			<f:selectItems value="#{votarBean.listaNivelEstudios}" />
+		<h:commandButton value="submitThemeId" type="submit"
+			action="#{voteSubmitView.processThemeId}" />
+
+		<p>
+			<h:outputText value="Pregunta: " />
+			<h:outputText value="#{voteSubmitView.question}" />
+		</p>
+		<h:selectOneMenu value="#{voteSubmitView.voteValue}"
+			disabled="#{voteSubmitView.disabledVote}">
+			<f:selectItems value="#{voteSubmitView.votes}" />
 		</h:selectOneMenu>
-		<h:commandButton id="submit" value="submit" type="submit"
-			action="#{votarBean.processGuardarVoto}" />
+		
+		<h:selectOneMenu value="#{voteSubmitView.nivelEstudios}" disabled="#{voteSubmitView.disabledVote}">
+			<f:selectItems value="#{voteSubmitView.listaNivelEstudios}" var="nivelEstudios"
+				itemValue="#{nivelEstudios}" itemLabel="#{nivelEstudios}" />
+		</h:selectOneMenu>
+		<h:commandButton value="submitVote" type="submit"
+			disabled="#{voteSubmitView.disabledVote}"
+			action="#{voteSubmitView.processVote}" />
 	</h:form>
-
-
-	<!-- 	<h:form id="form" class="oculto" method="POST">
-		<h:outputLabel>Valoracion:</h:outputLabel>
-		<select name="valoracion" value="${votarBean.voto.nombreTema}">
-			<c:forEach var="i" begin="1" end="10">
-				<option value="${i}">${i}</option>
-			</c:forEach>
-		</select>
-		<h:outputLabel>Nivel de estudios:</h:outputLabel>
-		<select name="nivelEstudios" value="${votarBean.listaNivelEstudios}">
-			<c:forEach var="nivelEstudios"
-				items="${votarBean.listaNivelEstudios}">
-				<option value="${nivelEstudios}">${nivelEstudios}</option>
-			</c:forEach>
-		</select>
-		<h:inputText name="nombreTema" value="${votarBean.nombreTema}" style="display: none;"/>style="display: none;
-		<h:commandButton value="Votar" action="#{votarBean.processGuardarVoto}" />
-	</h:form> -->
-
-
-
-
 </h:body>
 </html>

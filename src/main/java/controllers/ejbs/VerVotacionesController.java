@@ -6,19 +6,17 @@ import java.util.Map;
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.daos.VotoDao;
-import models.daos.jpa.DaoJpaFactory;
 import models.entities.Tema;
-import models.entities.Voto;
 
-public class VotoController {
+public class VerVotacionesController {
 
 	private VotoDao votoDao;
 	private TemaDao temaDao;
 
-	public VotoController() {
-		DaoFactory.setFactory(new DaoJpaFactory());
+	public VerVotacionesController() {
 		votoDao = DaoFactory.getFactory().getVotoDao();
 		temaDao = DaoFactory.getFactory().getTemaDao();
+
 	}
 
 	/**
@@ -40,11 +38,4 @@ public class VotoController {
 		}
 		return numeroVotosPorTema;
 	}
-
-	public void addVoto(Voto voto) {
-		// TODO Auto-generated method stub
-		votoDao.create(voto);
-		
-	}
-
 }
