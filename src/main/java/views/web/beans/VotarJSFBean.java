@@ -16,7 +16,7 @@ import controllers.ejbs.VotarController;
 
 @ManagedBean
 @ViewScoped
-public class VoteSubmitView extends ViewBean{
+public class VotarJSFBean extends ViewBean{
 
     private int themeId;
 

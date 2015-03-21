@@ -9,29 +9,29 @@
 <h:body>
 	<h3>JSF 2</h3>
 	<h:form>
-		<h:selectOneMenu value="#{voteSubmitView.themeId}">
-			<f:selectItems value="#{voteSubmitView.themes}" var="theme"
+		<h:selectOneMenu value="#{votarJSFBean.themeId}">
+			<f:selectItems value="#{votarJSFBean.themes}" var="theme"
 				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
 		</h:selectOneMenu>
 		<h:commandButton value="Seleccionar tema" type="submit"
-			action="#{voteSubmitView.processThemeId}" />
+			action="#{votarJSFBean.processThemeId}" />
 
 		<p>
 			<h:outputText value="Pregunta: " />
-			<h:outputText value="#{voteSubmitView.question}" />
+			<h:outputText value="#{votarJSFBean.question}" />
 		</p>
-		<h:selectOneMenu value="#{voteSubmitView.voteValue}"
-			disabled="#{voteSubmitView.disabledVote}">
-			<f:selectItems value="#{voteSubmitView.votes}" />
+		<h:selectOneMenu value="#{votarJSFBean.voteValue}"
+			disabled="#{votarJSFBean.disabledVote}">
+			<f:selectItems value="#{votarJSFBean.votes}" />
 		</h:selectOneMenu>
 		
-		<h:selectOneMenu value="#{voteSubmitView.nivelEstudios}" disabled="#{voteSubmitView.disabledVote}">
-			<f:selectItems value="#{voteSubmitView.listaNivelEstudios}" var="nivelEstudios"
+		<h:selectOneMenu value="#{votarJSFBean.nivelEstudios}" disabled="#{votarJSFBean.disabledVote}">
+			<f:selectItems value="#{votarJSFBean.listaNivelEstudios}" var="nivelEstudios"
 				itemValue="#{nivelEstudios}" itemLabel="#{nivelEstudios}" />
 		</h:selectOneMenu>
 		<h:commandButton value="Votar" type="submit"
-			disabled="#{voteSubmitView.disabledVote}"
-			action="#{voteSubmitView.processVote}" />
+			disabled="#{votarJSFBean.disabledVote}"
+			action="#{votarJSFBean.processVote}" />
 	</h:form>
 </h:body>
 </html>
