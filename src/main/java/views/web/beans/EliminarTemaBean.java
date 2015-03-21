@@ -63,7 +63,7 @@ public class EliminarTemaBean extends ViewBean {
 		this.errorMsg = errorMsg;
 	}
 
-	public String processEliminarTema() {
+	public String processEliminarTema() {System.out.println("Process eliminartema");
 		eliminarTemaController = this.getControllerFactory()
 				.getEliminarTemaController();
 		System.out.println("A eliminar es " + idTemaEliminar);
@@ -79,7 +79,7 @@ public class EliminarTemaBean extends ViewBean {
 			cargarTemas();
 			return "eliminarTema";
 		} else {
-			this.errorMsg = "El identificador de autorización introducido no es correcto";
+			this.errorMsg = "El identificador de autorización introducido no es corre	cto";
 			return "home";
 		}
 
