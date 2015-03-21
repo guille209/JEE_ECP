@@ -1,6 +1,7 @@
 package views.web.beans;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -8,14 +9,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import models.entities.Tema;
-import models.utils.IdentificadorAutorizacion;
 import controllers.interfaces.EliminarTemaController;
 
 @ManagedBean
 @ViewScoped
 public class EliminarTemaBean extends ViewBean {
 	private int identificador;
-	private IdentificadorAutorizacion identificadorAutorizacion;
 	private String errorMsg;
 	private List<Tema> listaTemas;
 	private EliminarTemaController eliminarTemaController;
@@ -37,15 +36,6 @@ public class EliminarTemaBean extends ViewBean {
 		this.identificador = identificador;
 	}
 
-	public IdentificadorAutorizacion getIdentificadorAutorizacion() {
-		return identificadorAutorizacion;
-	}
-
-	public void setIdentificadorAutorizacion(
-			IdentificadorAutorizacion identificadorAutorizacion) {
-		this.identificadorAutorizacion = identificadorAutorizacion;
-	}
-
 	public List<Tema> getListaTemas() {
 		return listaTemas;
 	}
@@ -62,7 +52,8 @@ public class EliminarTemaBean extends ViewBean {
 		this.errorMsg = errorMsg;
 	}
 
-	public String processEliminarTema() {System.out.println("Process eliminartema");
+	public String processEliminarTema() {
+		System.out.println("Process eliminartema");
 		eliminarTemaController = this.getControllerFactory()
 				.getEliminarTemaController();
 		System.out.println("A eliminar es " + idTemaEliminar);
