@@ -1,6 +1,7 @@
 package views.web.beans;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -60,11 +61,7 @@ public class VotarBean extends ViewBean {
 	public void update() {
 		votarController = this.getControllerFactory().getVotarController();
 		listaTemas = new ArrayList<Tema>();
-		listaNivelEstudios = new ArrayList<NivelEstudios>();
-		listaNivelEstudios.add(NivelEstudios.ALTO);
-		listaNivelEstudios.add(NivelEstudios.MEDIO);
-		listaNivelEstudios.add(NivelEstudios.BAJO);
-
+		listaNivelEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
 		listaTemas = votarController.getTemas();
 	}
 
