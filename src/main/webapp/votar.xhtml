@@ -13,7 +13,7 @@
 			<f:selectItems value="#{voteSubmitView.themes}" var="theme"
 				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
 		</h:selectOneMenu>
-		<h:commandButton value="submitThemeId" type="submit"
+		<h:commandButton value="Seleccionar tema" type="submit"
 			action="#{voteSubmitView.processThemeId}" />
 
 		<p>
@@ -29,7 +29,7 @@
 			<f:selectItems value="#{voteSubmitView.listaNivelEstudios}" var="nivelEstudios"
 				itemValue="#{nivelEstudios}" itemLabel="#{nivelEstudios}" />
 		</h:selectOneMenu>
-		<h:commandButton value="submitVote" type="submit"
+		<h:commandButton value="Votar" type="submit"
 			disabled="#{voteSubmitView.disabledVote}"
 			action="#{voteSubmitView.processVote}" />
 	</h:form>

@@ -7,6 +7,20 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jstl/core">
 
+<style>
+td {
+	text-align: center;
+	border-width: thin;
+	border-style: solid;
+}
+
+table {
+	border-width: medium;
+	border-style: solid;
+	float:left;
+}
+</style>
+
 
 <h:head>
 	<title>Ver votaciones</title>
@@ -15,27 +29,36 @@
 	<h1>Ver votaciones</h1>
 	#{verVotacionesBean.update()}
 
-<!-- NO VALE PARA HASHMAPS 	
- <ui:repeat value="#{verVotacionesBean.numeroVotosPorTema}" var="entry">
-		<p>Tema: #{entry.key}</p>
-		<p>Numero Votos: #{entry.value}</p>
-	</ui:repeat>
+	<table>
+		<thead>
+			<th>Tema</th>
+			<th>Numero de votos</th>
+		</thead>
+		<tbody>
+			<c:forEach var="type" items="#{verVotacionesBean.numeroVotosPorTema}">
+				<tr>
+					<td>#{type.key}</td>
+					<td>#{type.value}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
-	<ui:repeat value="#{verVotacionesBean.votacionMediaPorEstudios}"
-		var="entry">
-		<p>NivelEstudios: #{entry.key}</p>
-		<p>Media: #{entry.value}</p>
-	</ui:repeat> -->
-	
-	<c:forEach var="type" items="#{verVotacionesBean.numeroVotosPorTema}">
-   		<p>Tema  ${type.key}
-   		Numero Votos  ${type.value}</p>
-	</c:forEach>
-<br><br></br></br>
-	<c:forEach var="type" items="#{verVotacionesBean.votacionMediaPorEstudios}">
-   		<p>Nivel Estudios  ${type.key}
-   		Media  ${type.value}</p>
-	</c:forEach>
+	<table>
+		<thead>
+			<th>NivelEstudios</th>
+			<th>Media</th>
+		</thead>
+		<tbody>
+			<c:forEach var="type"
+				items="#{verVotacionesBean.votacionMediaPorEstudios}">
+				<tr>
+					<td>#{type.key}</td>
+					<td>#{type.value}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 </h:body>
 </html>
