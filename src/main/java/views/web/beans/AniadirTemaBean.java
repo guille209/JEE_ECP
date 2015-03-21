@@ -1,11 +1,12 @@
 package views.web.beans;
 
 import javax.faces.bean.ManagedBean;
+
 import models.entities.Tema;
 
 import org.apache.logging.log4j.LogManager;
 
-import controllers.ejbs.AniadirTemaController;
+import controllers.interfaces.AniadirTemaController;
 
 //Singleton o inyecccion
 //Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual

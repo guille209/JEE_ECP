@@ -1,7 +1,6 @@
 package views.web.beans;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,10 +8,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+
 import models.entities.Tema;
 import models.entities.Voto;
 import models.utils.NivelEstudios;
-import controllers.ejbs.VotarController;
+import controllers.interfaces.VotarController;
 
 @ManagedBean
 @ViewScoped

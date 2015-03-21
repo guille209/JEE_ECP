@@ -2,9 +2,11 @@ package views.web.beans;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import controllers.ejbs.VerVotacionesController;
+
+import controllers.interfaces.VerVotacionesController;
 
 @ManagedBean
 public class VerVotacionesBean extends ViewBean {

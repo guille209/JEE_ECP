@@ -2,7 +2,7 @@ package views.web.beans;
 
 import javax.faces.bean.ManagedProperty;
 
-import controllers.ejbs.ControllerFactory;
+import controllers.interfaces.ControllerFactory;
 
 public abstract class ViewBean {
 

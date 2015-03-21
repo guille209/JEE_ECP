@@ -15,7 +15,8 @@ import views.web.beans.AniadirTemaBean;
 import views.web.beans.EliminarTemaBean;
 import views.web.beans.VerVotacionesBean;
 import views.web.beans.VotarBean;
-import controllers.ejbs.ControllerFactory;
+import controllers.ejbs.ControllerFactoryEJB;
+import controllers.interfaces.ControllerFactory;
 
 @WebServlet("/jsp/*")
 public class Dispatcher extends HttpServlet {
@@ -29,7 +30,7 @@ public class Dispatcher extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		System.out.println("Inicializo controllerfactory");
-		controllerFactory = new ControllerFactory();
+		controllerFactory = new ControllerFactoryEJB();
 
 	}
 

@@ -1,7 +1,6 @@
 package views.web.beans;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 
 import models.entities.Tema;
 import models.utils.IdentificadorAutorizacion;
-import controllers.ejbs.EliminarTemaController;
+import controllers.interfaces.EliminarTemaController;
 
 @ManagedBean
 @ViewScoped

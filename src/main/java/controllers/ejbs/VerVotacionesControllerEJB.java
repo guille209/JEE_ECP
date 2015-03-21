@@ -3,32 +3,36 @@ package controllers.ejbs;
 import java.util.HashMap;
 import java.util.Map;
 
+import controllers.interfaces.VerVotacionesController;
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
 import models.daos.VotoDao;
 import models.entities.Tema;
 
-public class VerVotacionesController {
+public class VerVotacionesControllerEJB implements VerVotacionesController {
 
 	private VotoDao votoDao;
 	private TemaDao temaDao;
 
-	public VerVotacionesController() {
+	public VerVotacionesControllerEJB() {
 		votoDao = DaoFactory.getFactory().getVotoDao();
 		temaDao = DaoFactory.getFactory().getTemaDao();
 
 	}
 
-	/**
-	 * 
-	 * @return un mapa formado por el nombre del tema y su numero de votos
-	 *         asociado
+	/* (non-Javadoc)
+	 * @see controllers.ejbs.VerVotacionesController#getValoracionMedia()
 	 */
+	@Override
 	public Map<String, Double> getValoracionMedia() {
 
 		return votoDao.getValoracionMedia();
 	}
 
+	/* (non-Javadoc)
+	 * @see controllers.ejbs.VerVotacionesController#getNumeroVotos()
+	 */
+	@Override
 	public Map<String, Integer> getNumeroVotos() {
 		Map<String, Integer> numeroVotosPorTema = new HashMap<String, Integer>();
 
