@@ -18,10 +18,10 @@
 		<h:form id="form">
 			<h:commandButton value="Eliminar tema"
 				action="#{eliminarTemaBean.processIdentificar}" />
+				
+				
 			<h:inputText value="#{eliminarTemaBean.identificador}"
 				required="true" a:placeholder="Identificador" />
-			<h:outputText value="#{eliminarTemaBean.errorMsg}"
-				style="font-weight:bold" />
 		</h:form>
 	</ul>
 </h:body>

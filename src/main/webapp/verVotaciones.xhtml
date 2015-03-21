@@ -27,12 +27,12 @@
 		<p>Media: #{entry.value}</p>
 	</ui:repeat> -->
 	
-	<c:forEach var="type" items="${verVotacionesBean.numeroVotosPorTema}">
+	<c:forEach var="type" items="#{verVotacionesBean.numeroVotosPorTema}">
    		<p>Tema  ${type.key}
    		Numero Votos  ${type.value}</p>
 	</c:forEach>
 <br><br></br></br>
-	<c:forEach var="type" items="${verVotacionesBean.votacionMediaPorEstudios}">
+	<c:forEach var="type" items="#{verVotacionesBean.votacionMediaPorEstudios}">
    		<p>Nivel Estudios  ${type.key}
    		Media  ${type.value}</p>
 	</c:forEach>
