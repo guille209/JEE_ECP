@@ -8,15 +8,119 @@
 </script>
 <style>
 body {
-	background: #EDE9DF url("resources/images/loading.gif") no-repeat center center fixed;
+	background: #EDE9DF url("resources/images/loading.gif") no-repeat center
+		center fixed;
+}
+
+a {
+	padding: 10px 15px;
+	background: #4479BA;
+	color: #FFF;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: solid 1px #20538D;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px
+		rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px
+		rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px
+		rgba(0, 0, 0, 0.2);
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-decoration: none;
+	font-family: "Arial", Times, serif;
+	margin-left: 28%;
+}
+
+a:hover {
+	background: #356094;
+	border: solid 1px #2A4E77;
+	text-decoration: none;
+}
+
+a:active {
+	-webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+	-moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+	background: #2E5481;
+	border: solid 1px #203E5F;
+}
+
+.ribbon {
+	font-size: 16px !important;
+	/* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
+	width: 50%;
+	position: absolute;
+	background: #ba89b6;
+	color: #fff;
+	text-align: center;
+	padding: 1em 2em; /* Adjust to suit */
+	/*margin: 2em auto 3em;*/
+	margin-top:28%;
+	margin-left:22%;
+	/* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
+}
+
+.ribbon:before, .ribbon:after {
+	content: "";
+	position: absolute;
+	display: block;
+	bottom: -1em;
+	border: 1.5em solid #986794;
+	z-index: -1;
+}
+
+.ribbon:before {
+	left: -2em;
+	border-right-width: 1.5em;
+	border-left-color: transparent;
+}
+
+.ribbon:after {
+	right: -2em;
+	border-left-width: 1.5em;
+	border-right-color: transparent;
+}
+
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+	content: "";
+	position: absolute;
+	display: block;
+	border-style: solid;
+	border-color: #804f7c transparent transparent transparent;
+	bottom: -1em;
+}
+
+.ribbon .ribbon-content:before {
+	left: 0;
+	border-width: 1em 0 0 1em;
+}
+
+.ribbon .ribbon-content:after {
+	right: 0;
+	border-width: 1em 1em 0 0;
 }
 </style>
 </head>
 <body>
-<a href="/JEE_ECP/jsp/home">[JSP]Home</a>
-<a href="home.xhtml">[JSF]Home</a>
+	<a href="/JEE_ECP/jsp/home">[JSP]Home</a>
+	<a href="home.xhtml">[JSF]Home</a>
 
-
-
+	<h1 class="ribbon">
+		<strong class="ribbon-content">La primera vez que se ejecuta
+			la aplicación, el archivo persistence.xml incluye la generación de
+			tablas automatica mediante el drop-and-create-tables porque sino
+			saltará una excepción al no encontrarse las tablas, una vez ejecutado,
+			la base de datos se completa con la tabla tema y voto.En posteriores
+			ejecuciones dicha propiedad se puede poner a none para que no genere
+			de nuevo las tablas en cada ejecución y borre los datos anteriores.</strong>
+	</h1>
 </body>
 </html>
