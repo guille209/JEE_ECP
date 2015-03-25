@@ -8,15 +8,31 @@
 <title>ELIMINAR</title>
 </head>
 <body>
-	<c:set var="identificarEliminar" scope="request" value="${identificarEliminar}" />
+	<c:set var="identificarEliminar" scope="request"
+		value="${identificarEliminar}" />
 
-	<form action="eliminarTema" method="POST">
-		<select name="nivelEstudios">
-			<c:forEach var="value" items="${identificarEliminar.listaTemas}">
-				<option value="${value.id}">${value.nombre}</option>
-			</c:forEach>
-		</select> <input type="submit" value="EliminarTema">
-	</form>
+	<c:choose>
+		<c:when test="${empty identificarEliminar.listaTemas}">No existen temas para votar
+      <br />
+		</c:when>
+
+		<c:otherwise>
+
+
+			<form action="eliminarTema" method="POST">
+				<select name="nivelEstudios">
+					<c:forEach var="value" items="${identificarEliminar.listaTemas}">
+						<option value="${value.id}">${value.nombre}</option>
+					</c:forEach>
+				</select> <input type="submit" value="EliminarTema">
+			</form>
+
+
+			<br />
+		</c:otherwise>
+	</c:choose>
+
+
 	<font color="red">${identificarEliminar.errorMsg}</font>
 
 

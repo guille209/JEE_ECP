@@ -10,16 +10,19 @@
 	<title>Eliminar tema</title>
 </h:head>
 <h:body>
-	<h:form>
-	
-		<h:selectOneMenu id="select" value="#{eliminarTemaBean.idTemaEliminar}">
+	<h:outputLabel rendered="#{empty eliminarTemaBean.listaTemas}">No existen temas para eliminar</h:outputLabel>
+
+	<h:form rendered="#{!empty eliminarTemaBean.listaTemas}">
+
+		<h:selectOneMenu id="select"
+			value="#{eliminarTemaBean.idTemaEliminar}">
 			<f:selectItems value="#{eliminarTemaBean.listaTemas}" var="theme"
 				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />
 		</h:selectOneMenu>
 		<h:commandButton value="Eliminar tema" type="submit"
-			action="#{eliminarTemaBean.processEliminarTema}" >
-			 <f:ajax execute="select" />
-			 </h:commandButton>
+			action="#{eliminarTemaBean.processEliminarTema}">
+			<f:ajax execute="select" />
+		</h:commandButton>
 	</h:form>
 </h:body>
 </html>
