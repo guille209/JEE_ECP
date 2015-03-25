@@ -8,9 +8,6 @@ import org.apache.logging.log4j.LogManager;
 
 import controllers.interfaces.AniadirTemaController;
 
-//Singleton o inyecccion
-//Si hacemos inyeccion con jsp, con jsf debemos hacerlo igual
-//Poniendo esta anotacion el dispatcher de jsf hace toda la inyeccion
 @ManagedBean
 public class AniadirTemaBean extends ViewBean {
 	private String errorMsg;

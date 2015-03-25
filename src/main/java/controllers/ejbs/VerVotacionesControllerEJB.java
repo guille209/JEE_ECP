@@ -20,7 +20,9 @@ public class VerVotacionesControllerEJB implements VerVotacionesController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VerVotacionesController#getValoracionMedia()
 	 */
 	@Override
@@ -29,7 +31,9 @@ public class VerVotacionesControllerEJB implements VerVotacionesController {
 		return votoDao.getValoracionMedia();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VerVotacionesController#getNumeroVotos()
 	 */
 	@Override

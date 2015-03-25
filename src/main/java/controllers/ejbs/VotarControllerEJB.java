@@ -21,7 +21,9 @@ public class VotarControllerEJB implements VotarController {
 		temaDao = DaoFactory.getFactory().getTemaDao();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VotarController#addVoto(models.entities.Voto)
 	 */
 	@Override
@@ -31,7 +33,9 @@ public class VotarControllerEJB implements VotarController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VotarController#getTemas()
 	 */
 	@Override
@@ -40,7 +44,9 @@ public class VotarControllerEJB implements VotarController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VotarController#getTema(java.lang.String)
 	 */
 	@Override
@@ -48,7 +54,9 @@ public class VotarControllerEJB implements VotarController {
 		return temaDao.getTema(nombreTema);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.VotarController#getTema(java.lang.Integer)
 	 */
 	@Override

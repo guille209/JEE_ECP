@@ -19,7 +19,9 @@ public class EliminarTemaControllerEJB implements EliminarTemaController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.EliminarTemaController#removeTema(int)
 	 */
 	@Override
@@ -30,7 +32,9 @@ public class EliminarTemaControllerEJB implements EliminarTemaController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.EliminarTemaController#identificar(int)
 	 */
 	@Override
@@ -39,7 +43,9 @@ public class EliminarTemaControllerEJB implements EliminarTemaController {
 		return identificador == 666;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.EliminarTemaController#getTemas()
 	 */
 	@Override
@@ -48,7 +54,9 @@ public class EliminarTemaControllerEJB implements EliminarTemaController {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.EliminarTemaController#getTema(java.lang.String)
 	 */
 	@Override
@@ -56,7 +64,9 @@ public class EliminarTemaControllerEJB implements EliminarTemaController {
 		return temaDao.getTema(nombreTema);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.EliminarTemaController#getTema(java.lang.Integer)
 	 */
 	@Override

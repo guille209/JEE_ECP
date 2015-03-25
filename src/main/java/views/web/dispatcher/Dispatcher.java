@@ -29,7 +29,6 @@ public class Dispatcher extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		System.out.println("Inicializo controllerfactory");
 		controllerFactory = new ControllerFactoryEJB();
 
 	}
@@ -61,8 +60,6 @@ public class Dispatcher extends HttpServlet {
 		default:
 			view = "home";
 		}
-		System.out.println("Redireccionando a " + PATH_ROOT_VIEW + view
-				+ ".jsp");
 		this.getServletContext()
 				.getRequestDispatcher(PATH_ROOT_VIEW + view + ".jsp")
 				.forward(request, response);
@@ -91,7 +88,6 @@ public class Dispatcher extends HttpServlet {
 			voto.setValoracion(Integer.parseInt(request
 					.getParameter("valoracion")));
 			votarBean.setVoto(voto);
-			System.out.println(voto);
 			view = votarBean.processGuardarVoto();
 
 			break;

@@ -61,12 +61,12 @@ public class VotarBean extends ViewBean {
 	public void update() {
 		votarController = this.getControllerFactory().getVotarController();
 		listaTemas = new ArrayList<Tema>();
-		listaNivelEstudios = new ArrayList<NivelEstudios>(Arrays.asList(NivelEstudios.values()));
+		listaNivelEstudios = new ArrayList<NivelEstudios>(
+				Arrays.asList(NivelEstudios.values()));
 		listaTemas = votarController.getTemas();
 	}
 
 	public String processGuardarVoto() {
-		System.out.println("Mostrar " + voto);
 		votarController = this.getControllerFactory().getVotarController();
 		Tema tema = votarController.getTema(this.nombreTema);
 		voto.setTema(tema);

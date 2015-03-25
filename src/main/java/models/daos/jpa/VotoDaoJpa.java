@@ -1,6 +1,5 @@
 package models.daos.jpa;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao 
 				sumValAlto += voto.getValoracion();
 				break;
 			}
-		}	
+		}
 		votacionMediaPorEstudios.put("ALTO", sumValBajo / numNEBajo);
 		votacionMediaPorEstudios.put("MEDIO", sumValMedio / numNEMedio);
 		votacionMediaPorEstudios.put("BAJO", sumValAlto / numNEAlto);

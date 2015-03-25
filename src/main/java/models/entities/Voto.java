@@ -7,7 +7,7 @@ import models.utils.NivelEstudios;
 @Entity
 @Table(name = Voto.TABLE)
 public class Voto {
-	
+
 	public static final String TABLE = "VOTO";
 
 	public static final String ID = "ID";
@@ -31,7 +31,7 @@ public class Voto {
 
 	@Column(name = NIVELESTUDIOS)
 	private NivelEstudios nivelEstudios;
-	
+
 	@OneToOne
 	@JoinColumn
 	private Tema tema;
@@ -40,7 +40,8 @@ public class Voto {
 
 	}
 
-	public Voto(Integer valoracion, String ip, NivelEstudios nivelEstudios,Tema tema) {
+	public Voto(Integer valoracion, String ip, NivelEstudios nivelEstudios,
+			Tema tema) {
 		this.valoracion = valoracion;
 		this.ip = ip;
 		this.nivelEstudios = nivelEstudios;
@@ -67,7 +68,7 @@ public class Voto {
 	public String getIp() {
 		return ip;
 	}
-          
+
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
@@ -79,8 +80,6 @@ public class Voto {
 	public void setNivelEstudios(NivelEstudios nivelEstudios) {
 		this.nivelEstudios = nivelEstudios;
 	}
-	
-	
 
 	public Tema getTema() {
 		return tema;
@@ -100,11 +99,12 @@ public class Voto {
 
 	public String toString() {
 		return "Voto[Valoracion" + (int) valoracion + ",ip=" + ip
-				+ ",nivel de estudios=" + nivelEstudios.name()+" tema: "+tema+"]";
+				+ ",nivel de estudios=" + nivelEstudios.name() + " tema: "
+				+ tema + "]";
 	}
 
 	public Voto clone() {
-		return new Voto(valoracion, ip, nivelEstudios,tema);
+		return new Voto(valoracion, ip, nivelEstudios, tema);
 	}
 
 }

@@ -11,7 +11,7 @@ import controllers.interfaces.VotarController;
 
 @ManagedBean(name = "controllerFactory")
 @ApplicationScoped
-public class ControllerFactoryEJB implements ControllerFactory{
+public class ControllerFactoryEJB implements ControllerFactory {
 
 	private VotarController votarController;
 
@@ -29,7 +29,9 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		this.eliminarTemaController = new EliminarTemaControllerEJB();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.ControllerFactory#getVotarController()
 	 */
 	@Override
@@ -37,15 +39,21 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		return votarController;
 	}
 
-	/* (non-Javadoc)
-	 * @see controllers.ejbs.ControllerFactory#setVotarController(controllers.ejbs.VotarController)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * controllers.ejbs.ControllerFactory#setVotarController(controllers.ejbs
+	 * .VotarController)
 	 */
 	@Override
 	public void setVotarController(VotarController votarController) {
 		this.votarController = votarController;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.ControllerFactory#getVerVotacionesController()
 	 */
 	@Override
@@ -53,8 +61,12 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		return verVotacionesController;
 	}
 
-	/* (non-Javadoc)
-	 * @see controllers.ejbs.ControllerFactory#setVerVotacionesController(controllers.ejbs.VerVotacionesController)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * controllers.ejbs.ControllerFactory#setVerVotacionesController(controllers
+	 * .ejbs.VerVotacionesController)
 	 */
 	@Override
 	public void setVerVotacionesController(
@@ -62,7 +74,9 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		this.verVotacionesController = verVotacionesController;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.ControllerFactory#getAniadirTemaController()
 	 */
 	@Override
@@ -70,8 +84,12 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		return aniadirTemaController;
 	}
 
-	/* (non-Javadoc)
-	 * @see controllers.ejbs.ControllerFactory#setAniadirTemaController(controllers.ejbs.AniadirTemaController)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * controllers.ejbs.ControllerFactory#setAniadirTemaController(controllers
+	 * .ejbs.AniadirTemaController)
 	 */
 	@Override
 	public void setAniadirTemaController(
@@ -79,7 +97,9 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		this.aniadirTemaController = aniadirTemaController;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see controllers.ejbs.ControllerFactory#getEliminarTemaController()
 	 */
 	@Override
@@ -87,8 +107,12 @@ public class ControllerFactoryEJB implements ControllerFactory{
 		return eliminarTemaController;
 	}
 
-	/* (non-Javadoc)
-	 * @see controllers.ejbs.ControllerFactory#setEliminarTemaController(controllers.ejbs.EliminarTemaController)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * controllers.ejbs.ControllerFactory#setEliminarTemaController(controllers
+	 * .ejbs.EliminarTemaController)
 	 */
 	@Override
 	public void setEliminarTemaController(

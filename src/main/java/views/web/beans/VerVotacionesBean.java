@@ -45,8 +45,6 @@ public class VerVotacionesBean extends ViewBean {
 		votacionMediaPorEstudios = new HashMap<String, Double>();
 
 		numeroVotosPorTema = verVotacionesController.getNumeroVotos();
-		System.out.println("Getnumerodevotosdevuelve "
-				+ verVotacionesController.getNumeroVotos());
 		votacionMediaPorEstudios = verVotacionesController.getValoracionMedia();
 
 	}

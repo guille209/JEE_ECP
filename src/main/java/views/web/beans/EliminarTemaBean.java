@@ -53,10 +53,8 @@ public class EliminarTemaBean extends ViewBean {
 	}
 
 	public String processEliminarTema() {
-		System.out.println("Process eliminartema");
 		eliminarTemaController = this.getControllerFactory()
 				.getEliminarTemaController();
-		System.out.println("A eliminar es " + idTemaEliminar);
 		eliminarTemaController.removeTema(idTemaEliminar);
 		return "home";
 	}

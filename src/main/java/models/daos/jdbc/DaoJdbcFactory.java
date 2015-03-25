@@ -17,7 +17,7 @@ public class DaoJdbcFactory extends DaoFactory {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
 	private static final String URL = "jdbc:mysql://localhost:3306/jee";
-	
+
 	private static final String USER = "root";
 
 	private static final String PASS = "";
@@ -64,7 +64,5 @@ public class DaoJdbcFactory extends DaoFactory {
 		// TODO Auto-generated method stub VotoDaoJdbc no implementado
 		return null;
 	}
-
-
 
 }
