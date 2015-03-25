@@ -8,7 +8,8 @@
 </h:head>
 <h:body>
 	<h3>JSF 2</h3>
-	<h:form>
+	<h:outputLabel rendered="#{empty votarJSFBean.themes}">No existen temas para votar</h:outputLabel>
+	<h:form rendered="#{!empty votarJSFBean.themes}">
 		<h:selectOneMenu value="#{votarJSFBean.themeId}">
 			<f:selectItems value="#{votarJSFBean.themes}" var="theme"
 				itemValue="#{theme.id}" itemLabel="#{theme.nombre}" />

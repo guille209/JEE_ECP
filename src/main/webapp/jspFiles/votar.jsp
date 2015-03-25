@@ -17,6 +17,7 @@
 <body>
 <c:set var="pView" scope="request" value="${votar}" />
 <div>${pView.update()}</div>
+<c:if test="${empty pView.listaTemas}">No existen temas para votar</c:if>
 
 	<c:forEach items="${votar.listaTemas}" var="tema">
 		<button id="${tema.nombre}">${tema.nombre}</button>

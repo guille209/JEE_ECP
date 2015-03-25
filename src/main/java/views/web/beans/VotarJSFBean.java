@@ -43,16 +43,18 @@ public class VotarJSFBean extends ViewBean {
 		votarController = this.getControllerFactory().getVotarController();
 		themes = new ArrayList<Tema>();
 		themes = votarController.getTemas();
-		themeId = themes.get(0).getId();
-		votes = new int[10];
-		for (int i = 0; i < votes.length; i++) {
-			votes[i] = i;
-		}
-		listaNivelEstudios = new ArrayList<NivelEstudios>(
-				Arrays.asList(NivelEstudios.values()));
+		if (!themes.isEmpty()) {
+			themeId = themes.get(0).getId();
+			votes = new int[10];
+			for (int i = 0; i < votes.length; i++) {
+				votes[i] = i;
+			}
+			listaNivelEstudios = new ArrayList<NivelEstudios>(
+					Arrays.asList(NivelEstudios.values()));
 
-		disabledVote = true;
-		this.updateVote();
+			disabledVote = true;
+			this.updateVote();
+		}
 	}
 
 	public NivelEstudios getNivelEstudios() {
