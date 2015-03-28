@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 import models.daos.VotoDao;
 import models.entities.Tema;
 import models.entities.Voto;
+import models.utils.NivelEstudios;
 
 public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao {
 
@@ -71,9 +72,9 @@ public class VotoDaoJpa extends GenericDaoJpa<Voto, Integer> implements VotoDao 
 				break;
 			}
 		}
-		votacionMediaPorEstudios.put("ALTO", sumValBajo / numNEBajo);
-		votacionMediaPorEstudios.put("MEDIO", sumValMedio / numNEMedio);
-		votacionMediaPorEstudios.put("BAJO", sumValAlto / numNEAlto);
+		votacionMediaPorEstudios.put(NivelEstudios.ALTO.toString(), sumValAlto / numNEAlto);
+		votacionMediaPorEstudios.put(NivelEstudios.MEDIO.toString(), sumValMedio / numNEMedio);
+		votacionMediaPorEstudios.put(NivelEstudios.BAJO.toString(), sumValBajo / numNEBajo);
 
 		return votacionMediaPorEstudios;
 	}

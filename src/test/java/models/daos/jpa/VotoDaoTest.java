@@ -1,9 +1,12 @@
 package models.daos.jpa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import models.daos.DaoFactory;
 import models.daos.TemaDao;
@@ -28,19 +31,13 @@ public class VotoDaoTest {
 	private Tema tema;
 	
 	private static final int NUMERO_VOTOS_EN_TEMA = 2;
-	public static final List<Double> VALORACION_MEDIA_ESPERADA = new ArrayList<Double>();
+	public static final Map<String,Double> VALORACION_MEDIA_ESPERADA = new HashMap<String,Double>();
 
 	@BeforeClass
 	public static void beforeClass() {
 
 		DaoFactory.setFactory(new DaoJpaFactory());
 		// DaoJpaFactory.dropAndCreateTables();
-		//Media para nivel estudios bajo
-		VALORACION_MEDIA_ESPERADA.add(-1.0);
-		//Media para nivel estudios bajo
-		VALORACION_MEDIA_ESPERADA.add(-1.0);
-		//Media para nivel estudios bajo
-		VALORACION_MEDIA_ESPERADA.add(4.0);
 	}
 
 	@Before
@@ -51,12 +48,16 @@ public class VotoDaoTest {
 		tema = new Tema("nombre", "pregunta");
 
 		voto = new Voto(new Integer(5), ip, NivelEstudios.ALTO, tema);
-		voto2 = new Voto(new Integer(3), ip, NivelEstudios.ALTO, tema);
+		voto2 = new Voto(new Integer(2), ip, NivelEstudios.ALTO, tema);
 		votosParaMeter.add(voto);
 		votosParaMeter.add(voto2);	
 		temaDao.create(tema);
 		votoDao.create(voto);
 		votoDao.create(voto2);
+		
+		VALORACION_MEDIA_ESPERADA.put(NivelEstudios.ALTO.toString(), 3.5);
+		VALORACION_MEDIA_ESPERADA.put(NivelEstudios.MEDIO.toString(), Double.NaN);
+		VALORACION_MEDIA_ESPERADA.put(NivelEstudios.BAJO.toString(), Double.NaN);
 	
 	}
 
@@ -104,9 +105,9 @@ public class VotoDaoTest {
 	
 	@Test
 	public void testGetValoracionMedia(){
-//		List<Double> valoracionesMedias = votoDao.getValoracionMedia();
-//		System.out.println("Lista : "+valoracionesMedias);
-//		assertEquals(VALORACION_MEDIA_ESPERADA,votoDao.getValoracionMedia());
+		System.out.println("Lista : "+votoDao.getValoracionMedia());
+		System.out.println("Valoracion media esperada: "+VALORACION_MEDIA_ESPERADA);
+		assertEquals(VALORACION_MEDIA_ESPERADA,votoDao.getValoracionMedia());
 	}
 
 	@Test
