@@ -69,42 +69,40 @@ public class TemaDaoTest {
 		}
 	}
 
-//	@After
-//	public void after() {
-//		temaDao.deleteById(tema.getId());
-//		temaDao.deleteById(tema2.getId());
-//	}
-//
-//	@Test
-//	public void testCreateAndRead() {
-//		assertEquals(tema, temaDao.read(tema.getId()));
-//	}
-//
-//	@Test
-//	public void testUpdate() {
-//		String nuevaPregunta = "¿Nueva pregunta?";
-//		Tema temaBD = temaDao.read(tema.getId());
-//		temaBD.setPregunta(nuevaPregunta);
-//		temaDao.update(temaBD);
-//		assertEquals(temaDao.read(temaBD.getId()).getPregunta(), nuevaPregunta);
-//	}
-//
-//	@Test
-//	public void testDeleteById() {
-//		temaDao.deleteById(tema.getId());
-//		assertNull(temaDao.read(tema.getId()));
-//	}
-//
-//	@Test
-//	public void testFindAll() {
-//		List<Tema> listaTemas = temaDao.findAll();
-//		assertEquals(listaTemas, temasParaMeter);
-//
-//	}
-	
-	@Test
-	public void cosa(){
-		
+	@After
+	public void after() {
+		votoDao.eliminarVotos(tema);
+		votoDao.eliminarVotos(tema2);
+		temaDao.deleteById(tema.getId());
+		temaDao.deleteById(tema2.getId());
 	}
 
+	@Test
+	public void testCreateAndRead() {
+		assertEquals(tema, temaDao.read(tema.getId()));
+	}
+
+	@Test
+	public void testUpdate() {
+		String nuevaPregunta = "¿Nueva pregunta?";
+		Tema temaBD = temaDao.read(tema.getId());
+		temaBD.setPregunta(nuevaPregunta);
+		temaDao.update(temaBD);
+		assertEquals(temaDao.read(temaBD.getId()).getPregunta(), nuevaPregunta);
+	}
+
+	@Test
+	public void testDeleteById() {
+		System.out.println("Tema a borrar es "+tema);
+		votoDao.eliminarVotos(tema);
+		temaDao.deleteById(tema.getId());
+		assertNull(temaDao.read(tema.getId()));
+	}
+
+	@Test
+	public void testFindAll() {
+		List<Tema> listaTemas = temaDao.findAll();
+		assertEquals(listaTemas, temasParaMeter);
+
+	}
 }
